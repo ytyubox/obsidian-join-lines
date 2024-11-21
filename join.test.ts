@@ -115,7 +115,7 @@ describe("join cursor line", () => {
 		]);
 	});
 
-	it("order list line, next indent bullet list line", () => {
+	it("bullet list line, next indent bullet list line", () => {
 		expect(
 			joinLinesCursorText("- current line", "  - next line")
 		).toStrictEqual([
@@ -125,5 +125,11 @@ describe("join cursor line", () => {
 			`,
 			26,
 		]);
+	});
+	it("indented bullet list line, next lower indented bullet list", () => {
+		const s = "  ";
+		expect(
+			joinLinesCursorText("  1. current line", "     1. next line")
+		).toStrictEqual([`${s}1. current line\n${s}2. next line`, 32]);
 	});
 });
