@@ -10,10 +10,9 @@ export function joinLinesCursorText(
 	if (isNullOrEmpty(nextLineText)) {
 		return currLineText;
 	}
-	const currLineMatch = currLineText.match(/^(\d+)\.\s*/);
 	const currLineLevel = checkListLevel(currLineText);
 	const nextLineLevel = checkListLevel(nextLineText);
-	const nextLineMatch = nextLineText.match(/^\s*(\d+)\.\s*/);
+	
 	if (currLineLevel === nextLineLevel) {
 		// Remove numbering (e.g., "2. ") from the next line
 		nextLineText = nextLineText.replace(/^\d+\.\s*/, "").trim();
