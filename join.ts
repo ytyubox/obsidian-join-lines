@@ -10,15 +10,16 @@ export function joinLinesCursorText(
 	if (isNullOrEmpty(nextLineText)) {
 		return [currLineText, currLineText.length];
 	}
-	const currLineLevel = checkListLevel(currLineText);
-	const nextLineLevel = checkListLevel(nextLineText);
+	const [currLineLevel, currRestLine] = checkIndentLevel(currLineText);
+	const [nextLineLevel, nextRestLine] = checkIndentLevel(nextLineText);
 
-	if (currLineLevel === nextLineLevel) {
+	if (currLineLevel >= nextLineLevel) {
 		// Remove numbering (e.g., "2. ") from the next line
-		nextLineText = trimMarkdownListSymbol(nextLineText);
+		nextLineText = trimMarkdownListSymbol(nextRestLine);
 
 		return [currLineText + " " + nextLineText, currLineText.length + 1];
 	}
+
 	const currLineMatch = currLineText.match(/^(\d+)\.\s*/);
 	const nextLineMatch = nextLineText.match(/^\s*(\d+)\.\s*/);
 	if (currLineMatch && nextLineMatch) {
@@ -29,18 +30,18 @@ export function joinLinesCursorText(
 		const line = `${currLineText}\n${nextLineText}`;
 		return [line, line.length];
 	}
-	return ["", 0];
+	return ["__FAILURE_CASE__", -9999999999999];
 }
 
 function isNullOrEmpty(str: string | null | undefined): boolean {
 	return str === null || str === undefined || str.trim().length === 0;
 }
-function checkListLevel(lineText: string): number {
-	const match = lineText.match(/^(\s*)\d+\.\s*/);
+function checkIndentLevel(lineText: string): [number, string] {
+	const match = lineText.match(/^(\s*).*\s*/);
 	if (match) {
-		return match[1].length / 2 + 1;
+		return [match[1].length / 2 + 1, lineText.trimStart()];
 	}
-	return 0;
+	return [0, lineText];
 }
 function trimMarkdownListSymbol(lineText: string): string {
 	return lineText.replace(/^\s*([-*+]\s+|\d+\.\s+)/, "").trim();

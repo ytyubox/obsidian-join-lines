@@ -74,7 +74,7 @@ describe("join cursor line", () => {
 		).toStrictEqual(["current line next line", 13]);
 	});
 
-	it("line with prefix and a suffix, next line", () => {
+	fit("line with prefix and a suffix, next line", () => {
 		expect(
 			joinLinesCursorText("   current line         ", "next line")
 		).toStrictEqual(["   current line next line", 16]);
@@ -104,7 +104,7 @@ describe("join cursor line", () => {
 		]);
 	});
 
-	fit("bullet list line, next bullet list line", () => {
+	it("bullet list line, next bullet list line", () => {
 		expect(
 			joinLinesCursorText("- current line", "- next line")
 		).toStrictEqual([
