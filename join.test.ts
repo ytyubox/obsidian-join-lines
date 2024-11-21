@@ -13,8 +13,9 @@ describe("join selected lines", () => {
 	it("2 line selection", () => {
 		expect(
 			joinLinesSelectText(
-				dedent`line 1
-line 2`
+				dedent`
+				line 1
+				line 2`
 			)
 		).toStrictEqual("line 1 line 2");
 	});
