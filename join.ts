@@ -38,8 +38,9 @@ function isNullOrEmpty(str: string | null | undefined): boolean {
 }
 function checkIndentLevel(lineText: string): [number, string] {
 	const match = lineText.match(/^(\s*)[-*+]\s+|\d+\./);
-	if (match) {
-		return [match[1].length / 2 + 1, lineText.trimStart()];
+	console.log(match);
+	if (match && match != undefined) {
+		return [match[0].length / 2 + 1, lineText.trimStart()];
 	}
 	return [0, lineText];
 }
