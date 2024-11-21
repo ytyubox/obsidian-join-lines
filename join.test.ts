@@ -48,7 +48,7 @@ describe("join selected lines", () => {
 	});
 });
 
-describe("join selected lines", () => {
+describe("join cursor line", () => {
 	it("empty select", () => {
 		expect(joinLinesSelectText("")).toStrictEqual("");
 	});
