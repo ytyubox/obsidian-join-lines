@@ -1,4 +1,5 @@
 import { joinLinesSelectText, joinLinesCursorText } from "./join";
+import dedent from "dedent";
 
 describe("join selected lines", () => {
 	it("empty select", () => {
@@ -12,7 +13,7 @@ describe("join selected lines", () => {
 	it("2 line selection", () => {
 		expect(
 			joinLinesSelectText(
-				`line 1
+				dedent`line 1
 line 2`
 			)
 		).toStrictEqual("line 1 line 2");
