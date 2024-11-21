@@ -14,7 +14,7 @@ export default class JoinLinesPlugin extends Plugin {
 
 function joinLinesSelectText(text: string) {}
 
-function joinLinesSelectText(text: string) {}
+function joinLinesCurosrText(text: string) {}
 function joinLines(editor: Editor) {
 	const selectedText = editor.getSelection();
 	if (selectedText && selectedText.includes("\n")) {
