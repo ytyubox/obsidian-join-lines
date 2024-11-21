@@ -12,6 +12,8 @@ export default class JoinLinesPlugin extends Plugin {
 	}
 }
 
+function 
+
 function joinLines(editor: Editor) {
 	const selectedText = editor.getSelection();
 	if (selectedText && selectedText.includes("\n")) {
