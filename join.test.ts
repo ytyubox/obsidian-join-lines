@@ -49,7 +49,7 @@ describe("join selected lines", () => {
 });
 
 describe("join cursor line", () => {
-	it("empty lines", () => {
+	it("empty next line", () => {
 		expect(joinLinesCursorText("current line", "")).toStrictEqual(
 			"current line"
 		);
