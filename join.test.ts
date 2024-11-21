@@ -1,3 +1,4 @@
+import { devNull } from "os";
 import { joinLinesSelectText, joinNextLine, joinPreviousLine } from "./join";
 import dedent from "dedent";
 describe("test join behavior", () => {
@@ -28,7 +29,7 @@ describe("test join behavior", () => {
 
 				line 2
 				`)
-			).toStrictEqual("line 1\nline 2");
+			).toStrictEqual(dedent`line 1\nline 2`);
 		});
 		it("too many linebreak with 3 lines selection", () => {
 			expect(
