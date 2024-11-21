@@ -3,8 +3,15 @@ import { joinLinesSelectText, joinLinesCursorText } from "./join";
 export default class JoinLinesPlugin extends Plugin {
 	async onload() {
 		this.addCommand({
-			id: "join-lines",
-			name: "Join lines",
+			id: "join-next-lines",
+			name: "Join next lines",
+			editorCallback(editor) {
+				joinLines(editor);
+			},
+		});
+		this.addCommand({
+			id: "join-previous-lines",
+			name: "Join previous lines",
 			editorCallback(editor) {
 				joinLines(editor);
 			},
