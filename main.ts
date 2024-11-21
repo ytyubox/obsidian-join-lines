@@ -12,7 +12,11 @@ export default class JoinLinesPlugin extends Plugin {
 	}
 }
 
-function joinLinesSelectText(text: string) {}
+function joinLinesSelectText(text: string) {
+	const joinedText = selectedText.replace(/\n/g, " ");
+	editor.replaceSelection(joinedText);
+	return;
+}
 
 function joinLinesCursorText(text: string) {}
 function joinLines(editor: Editor) {
