@@ -20,9 +20,7 @@ function joinLinesCursorText(text: string) {}
 function joinLines(editor: Editor) {
 	const selectedText = editor.getSelection();
 	if (selectedText && selectedText.includes("\n")) {
-		const joinedText = joinLinesSelectText(
-			
-		)
+		const joinedText = joinLinesSelectText()
 		editor.replaceSelection(joinedText);
 		return;
 	}
