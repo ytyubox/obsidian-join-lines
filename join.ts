@@ -12,8 +12,8 @@ export function joinLinesCursorText(
 	}
 	const [currLineLevel, currRestLine] = checkIndentLevel(currLineText);
 	const [nextLineLevel, nextRestLine] = checkIndentLevel(nextLineText);
-	console.log(currLineText, "currLineLevel", currLineLevel);
-	if (currLineLevel == nextLineLevel) {
+	// console.log("^" + currLineText + "$", "currLineLevel", currLineLevel);
+	if (currLineLevel >= nextLineLevel) {
 		// Remove numbering (e.g., "2. ") from the next line
 		nextLineText = trimMarkdownListSymbol(nextRestLine);
 
@@ -31,7 +31,7 @@ export function joinLinesCursorText(
 		if (currLineLevel > 0) {
 			nextLineText = " ".repeat(currLineLevel) + nextLineText;
 		}
-		console.log("$" + nextLineText);
+		// console.log("nextLineResult: ^" + nextLineText + "$");
 		const line = `${currLineText}\n${nextLineText}`;
 		return [line, line.length];
 	}
@@ -51,10 +51,10 @@ function isNullOrEmpty(str: string | null | undefined): boolean {
 	return str === null || str === undefined || str.trim().length === 0;
 }
 function checkIndentLevel(lineText: string): [number, string] {
-	const match = lineText.match(/^(\s*)/);
+	const match = lineText.match(/^([\s]+)([-*+]\s+|\d+\.\s+)/);
 	if (match && match != undefined) {
-		console.log("match", match[0]);
-		const level = match[0].length;
+		const matching = match[1];
+		const level = matching.length;
 		return [level, lineText.trimStart()];
 	}
 	return [0, lineText];
