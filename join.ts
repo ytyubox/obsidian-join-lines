@@ -1,5 +1,5 @@
 export function joinLinesSelectText(text: string) {
-	return text.replace(/\n+/g, " ");
+	return text.replace(/\n+/gm, " ");
 }
 
 export function joinLinesCursorText(
