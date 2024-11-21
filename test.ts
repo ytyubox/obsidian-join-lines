@@ -4,7 +4,7 @@ describe("join lines", () => {
 	it("empty select", () => {
 		expect(joinLinesSelectText("")).toStrictEqual("");
 	});
-	it("empty select", () => {
+	it(" select", () => {
 		expect(joinLinesSelectText("")).toStrictEqual("");
 	});
 });
