@@ -17,7 +17,7 @@ function joinLinesSelectText(text: string) {
 }
 
 function joinLinesCursorText(currLineText: string, nextLineText: string) {
-	const joinedText = currLineText + " " + nextLineText;
+	return currLineText + " " + nextLineText;
 }
 function joinLines(editor: Editor) {
 	const selectedText = editor.getSelection();
