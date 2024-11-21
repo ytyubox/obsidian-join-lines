@@ -18,7 +18,8 @@ export function joinLinesCursorText(
 		// Remove numbering (e.g., "2. ") from the next line
 		nextLineText = nextLineText.replace(/^\d+\.\s*/, "").trim();
 		return currLineText + " " + nextLineText;
-	} else if (currLineMatch && nextLineMatch) {
+	} 
+   if (currLineMatch && nextLineMatch) {
 		const nextNumber = parseInt(currLineMatch[1]) + 1;
 		nextLineText = nextLineText
 			.replace(/^\s*\d+\.\s*/, `${nextNumber}. `)
