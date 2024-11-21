@@ -33,7 +33,7 @@ export function joinLinesCursorText(
 		}
 		// console.log("nextLineResult: ^" + nextLineText + "$");
 		const line = `${currLineText}\n${nextLineText}`;
-		return [line, currLineText.length + 1 + currLineLevel];
+		return [line, currLineText.length];
 	}
 	const currLinelistMark = currLineText.match(/\s*(.*)\s/);
 	if (currLinelistMark) {
@@ -45,7 +45,7 @@ export function joinLinesCursorText(
 			nextLineText = " ".repeat(currLineLevel) + nextLineText;
 		}
 		const line = `${currLineText}\n${nextLineText}`;
-		return [line, currLineText.length + 1 + currLineLevel];
+		return [line, currLineText.length];
 	}
 	return ["__FAILURE_CASE__", -9999999999999];
 }
