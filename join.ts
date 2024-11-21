@@ -29,7 +29,7 @@ export function joinLinesCursorText(
 		if (currLineLevel > 0) {
 			nextLineText = " ".repeat(currLineLevel) + nextLineText;
 		}
-		// console.log("nextLineResult: ^" + nextLineText + "$");
+
 		const line = `${currLineText}\n${nextLineText}`;
 		return [line, line.length];
 	}
