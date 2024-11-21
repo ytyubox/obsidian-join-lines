@@ -155,10 +155,10 @@ describe("join cursor previous line", () => {
 		).toStrictEqual(["previous line current line", 14]);
 	});
 
-	xit("line with prefix and a suffix, current line", () => {
+	it("line with prefix and a suffix, current line", () => {
 		expect(
 			joinPreviousLine("   previous line         ", "current line")
-		).toStrictEqual(["   previous line current line", 16]);
+		).toStrictEqual(["   previous line current line", 17]);
 	});
 
 	xit("line with prefix and a suffix, current line with prefix and a suffix", () => {
