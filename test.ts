@@ -1,7 +1,7 @@
 import { joinLinesSelectText, joinLinesCursorText } from "./join";
 
 describe("join lines", () => {
-	it("empty tree", () => {
+	it("empty text", () => {
 		expect(joinLinesSelectText("")).toStrictEqual("");
 	});
 });
