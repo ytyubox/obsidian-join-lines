@@ -4,10 +4,10 @@ FN:1,joinLinesSelectText
 FN:5,joinLinesCursorText
 FNF:2
 FNH:1
-FNDA:1,joinLinesSelectText
+FNDA:2,joinLinesSelectText
 FNDA:0,joinLinesCursorText
 DA:1,1
-DA:2,1
+DA:2,2
 DA:5,1
 DA:9,0
 LF:4
