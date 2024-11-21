@@ -16,7 +16,7 @@ function joinLinesSelectText(text: string) {
 	return text.replace(/\n/g, " ");
 }
 
-function joinLinesCursorText(currLine: string) {}
+function joinLinesCursorText(currLineText: string) {}
 function joinLines(editor: Editor) {
 	const selectedText = editor.getSelection();
 	if (selectedText && selectedText.includes("\n")) {
