@@ -20,12 +20,21 @@ export function joinLinesCursorText(
 		return [currLineText + " " + nextLineText, currLineText.length + 1];
 	}
 
-	const currLineMatch = currLineText.match(/^(\d+)\.\s*/);
-	const nextLineMatch = nextLineText.match(/^\s*(\d+)\.\s*/);
-	if (currLineMatch && nextLineMatch) {
-		const nextNumber = parseInt(currLineMatch[1]) + 1;
+	const currLineorder = currLineText.match(/^(\d+)\.\s*/);
+	const nextLineorder = nextLineText.match(/^\s*(\d+)\.\s*/);
+	if (currLineorder && nextLineorder) {
+		const nextNumber = parseInt(currLineorder[1]) + 1;
 		nextLineText = nextLineText
 			.replace(/^\s*\d+\.\s*/, `${nextNumber}. `)
+			.trim();
+		const line = `${currLineText}\n${nextLineText}`;
+		return [line, line.length];
+	}
+	const currLinelistMark = currLineText.match(/\s*(.*)\s/);
+	if (currLinelistMark) {
+		const listMark = currLinelistMark[0];
+		nextLineText = nextLineText
+			.replace(/^\s*[-*+]\.\s*/, `${listMark} `)
 			.trim();
 		const line = `${currLineText}\n${nextLineText}`;
 		return [line, line.length];
