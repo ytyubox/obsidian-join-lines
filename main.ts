@@ -12,7 +12,9 @@ export default class JoinLinesPlugin extends Plugin {
 	}
 }
 
-function joinLinesSelectText(textstring)
+function joinLinesSelectText(text:string) {
+	
+}
 
 function joinLines(editor: Editor) {
 	const selectedText = editor.getSelection();
