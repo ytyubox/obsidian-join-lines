@@ -15,7 +15,8 @@ describe("join selected lines", () => {
 			joinLinesSelectText(
 				dedent`
 				line 1
-				line 2`
+				line 2
+				`
 			)
 		).toStrictEqual("line 1 line 2");
 	});
