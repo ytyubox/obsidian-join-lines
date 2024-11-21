@@ -5,6 +5,6 @@ describe("join lines", () => {
 		expect(joinLinesSelectText("")).toStrictEqual("");
 	});
 	it("1 line selection", () => {
-		expect(joinLinesSelectText("")).toStrictEqual("");
+		expect(joinLinesSelectText("abc")).toStrictEqual("abc");
 	});
 });
