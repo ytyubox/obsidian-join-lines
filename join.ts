@@ -1,7 +1,6 @@
 export function joinLinesSelectText(text: string): string {
 	const match = text.match(/\n{2,}/);
 	if (match?.length) {
-		console.log(match);
 		return text.replace(/\n{2,}/gm, "\n");
 	}
 	return text.replace(/\n/gm, " ");
