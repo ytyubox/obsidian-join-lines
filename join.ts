@@ -12,9 +12,7 @@ export function joinLinesCursorText(
 	}
 	const [currLineLevel, currRestLine] = checkIndentLevel(currLineText);
 	const [nextLineLevel, nextRestLine] = checkIndentLevel(nextLineText);
-	// console.log("^" + currLineText + "$", "currLineLevel", currLineLevel);
 	if (currLineLevel >= nextLineLevel) {
-		// Remove numbering (e.g., "2. ") from the next line
 		nextLineText = trimMarkdownListSymbol(nextRestLine);
 
 		return [currLineText + " " + nextLineText, currLineText.length + 1];
