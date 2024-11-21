@@ -56,6 +56,10 @@ function joinPreviousLines(editor: Editor) {
 	// and preserve the cursor position
 	const cursor = editor.getCursor();
 	const currLine = cursor.line;
+
+	if (currLine == 0) {
+		return;
+	}
 	const previousLine = currLine - 1;
 	const currLineText = editor.getLine(currLine);
 	const previousLineText = editor.getLine(previousLine);
