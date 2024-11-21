@@ -35,7 +35,7 @@ function joinLines(editor: Editor) {
 	const currLineText = editor.getLine(currLine);
 	const nextLineText = editor.getLine(nextLine);
 	const joinedText = joinLinesCursorText(
-		c
+		currLineText
 	)
 	editor.replaceRange(
 		joinedText,
