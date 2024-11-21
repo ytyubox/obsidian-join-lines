@@ -71,25 +71,25 @@ describe("join cursor line", () => {
 	it("line with space suffix, next line", () => {
 		expect(
 			joinLinesCursorText("current line         ", "next line")
-		).toStrictEqual(["current line next line", 22]);
+		).toStrictEqual(["current line next line", 12]);
 	});
 
 	it("line with prefix and a suffix, next line", () => {
 		expect(
 			joinLinesCursorText("   current line         ", "next line")
-		).toStrictEqual(["   current line next line", 25]);
+		).toStrictEqual(["   current line next line", 15]);
 	});
 
 	it("line with prefix and a suffix, next line with prefix and a suffix", () => {
 		expect(
 			joinLinesCursorText("   current line         ", "    next line    ")
-		).toStrictEqual(["   current line next line", 25]);
+		).toStrictEqual(["   current line next line", 15]);
 	});
 
 	it("order list line, next order list line", () => {
 		expect(
 			joinLinesCursorText("1. current line", "2. next line")
-		).toStrictEqual(["1. current line next line", 25]);
+		).toStrictEqual(["1. current line next line", 15]);
 	});
 
 	it("order list line, next order list line", () => {
