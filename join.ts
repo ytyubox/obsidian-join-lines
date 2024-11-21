@@ -1,11 +1,11 @@
-export function joinLinesSelectText(text: string) {
+export function joinLinesSelectText(text: string): string {
 	return text.replace(/\n+/gm, " ");
 }
 
 export function joinLinesCursorText(
 	currLineText: string,
 	nextLineText: string
-) {
+): string {
 	currLineText = currLineText.trimEnd();
 	if (isNullOrEmpty(nextLineText)) {
 		return currLineText;
@@ -27,6 +27,7 @@ export function joinLinesCursorText(
 			.trim();
 		return `${currLineText}\n${nextLineText}`;
 	}
+	return "";
 }
 
 function isNullOrEmpty(str: string | null | undefined): boolean {
