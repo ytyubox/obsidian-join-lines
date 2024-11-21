@@ -92,7 +92,23 @@ describe("join cursor line", () => {
 
 	it("order list line, next order list line", () => {
 		expect(
-			joinLinesCursorText("1. current line", "2. next line")
-		).toStrictEqual("1. current line next line");
+			joinLinesCursorText("1. current line", "  1. next line")
+		).toStrictEqual(
+			dedent`
+			1. current line
+			2. next line
+			`
+		);
+	});
+
+	it("order list 3. line, next order list line", () => {
+		expect(
+			joinLinesCursorText("3. current line", "  1. next line")
+		).toStrictEqual(
+			dedent`
+			3. current line
+			4. next line
+			`
+		);
 	});
 });
