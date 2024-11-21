@@ -38,7 +38,12 @@ describe("join selected lines", () => {
 
 				
 				line 2
+
+
+
+				
+				line 3
 				`)
-		).toStrictEqual("line 1 line 2");
+		).toStrictEqual("line 1 line 2 line 3");
 	});
 });
