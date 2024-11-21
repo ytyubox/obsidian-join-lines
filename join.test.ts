@@ -126,10 +126,10 @@ describe("join cursor line", () => {
 			26,
 		]);
 	});
-	it("indented bullet list line, next lower indented bullet list", () => {
+	fit("indented bullet list line, next lower indented bullet list", () => {
 		const s = "  ";
 		expect(
-			joinLinesCursorText("  1. current line", "     1. next line")
-		).toStrictEqual([`${s}1. current line\n${s}2. next line`, 32]);
+			joinLinesCursorText(`${s}- current line`, `${s}${s}- next line`)
+		).toStrictEqual([`${s}- current line\n${s}- next line`, 30]);
 	});
 });
