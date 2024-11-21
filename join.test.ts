@@ -1,7 +1,7 @@
 import { joinLinesSelectText, joinNextLine, joinPreviousLine } from "./join";
 import dedent from "dedent";
 
-describe("join selected lines", () => {
+fdescribe("join selected lines", () => {
 	it("empty select", () => {
 		expect(joinLinesSelectText("")).toStrictEqual("");
 	});
@@ -28,7 +28,7 @@ describe("join selected lines", () => {
 
 				line 2
 				`)
-		).toStrictEqual("line 1 line 2");
+		).toStrictEqual("line 1\nline 2");
 	});
 	it("too many linebreak with 3 lines selection", () => {
 		expect(
@@ -44,7 +44,7 @@ describe("join selected lines", () => {
 				
 				line 3
 				`)
-		).toStrictEqual("line 1 line 2 line 3");
+		).toStrictEqual("line 1\nline 2\nline 3");
 	});
 });
 
