@@ -13,7 +13,7 @@ export default class JoinLinesPlugin extends Plugin {
 }
 
 function joinLinesSelectText(text: string) {
-	const joinedText = selectedText.replace(/\n/g, " ");
+retext.replace(/\n/g, " ");
 	editor.replaceSelection(joinedText);
 	return;
 }
