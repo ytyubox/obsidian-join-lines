@@ -1,6 +1,11 @@
 import { joinLinesSelectText, joinNextLine, joinPreviousLine } from "./join";
 import dedent from "dedent";
 describe("test join behavior", () => {
+	/**
+	 * Bar tests
+	 *
+	 * @group join selected lines
+	 */
 	describe("join selected lines", () => {
 		it("empty select", () => {
 			expect(joinLinesSelectText("")).toStrictEqual("");
