@@ -12,12 +12,10 @@ describe("join selected lines", () => {
 
 	it("2 line selection", () => {
 		expect(
-			joinLinesSelectText(
-				dedent`
+			joinLinesSelectText(dedent`
 				line 1
 				line 2
-				`
-			)
+				`)
 		).toStrictEqual("line 1 line 2");
 	});
 });
