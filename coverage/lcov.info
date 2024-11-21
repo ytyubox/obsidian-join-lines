@@ -1,0 +1,17 @@
+TN:
+SF:join.ts
+FN:1,joinLinesSelectText
+FN:5,joinLinesCursorText
+FNF:2
+FNH:1
+FNDA:1,joinLinesSelectText
+FNDA:0,joinLinesCursorText
+DA:1,1
+DA:2,1
+DA:5,1
+DA:9,0
+LF:4
+LH:3
+BRF:0
+BRH:0
+end_of_record

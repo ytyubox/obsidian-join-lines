@@ -1,12 +1,7 @@
-test("adds 1 + 2 to equal 3", () => {
-	// Arrange
-	let x: number = 2,
-		y: number = 2;
-	let expected: number = 4;
+import { joinLinesSelectText, joinLinesCursorText } from "./join";
 
-	// Act
-	let actual: number = x + y;
-
-	// Assert
-	expect(actual).toBe(expected);
+describe("join lines", () => {
+	it("empty tree", () => {
+		expect(joinLinesSelectText("")).toStrictEqual("");
+	});
 });

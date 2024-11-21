@@ -1,5 +1,5 @@
 import { Editor, Plugin } from "obsidian";
-
+import { joinLinesSelectText, joinLinesCursorText } from "./join";
 export default class JoinLinesPlugin extends Plugin {
 	async onload() {
 		this.addCommand({
@@ -12,13 +12,6 @@ export default class JoinLinesPlugin extends Plugin {
 	}
 }
 
-function joinLinesSelectText(text: string) {
-	return text.replace(/\n/g, " ");
-}
-
-function joinLinesCursorText(currLineText: string, nextLineText: string) {
-	return currLineText + " " + nextLineText;
-}
 function joinLines(editor: Editor) {
 	const selectedText = editor.getSelection();
 	if (selectedText && selectedText.includes("\n")) {
