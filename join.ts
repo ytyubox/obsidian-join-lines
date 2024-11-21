@@ -17,7 +17,7 @@ export function joinLinesCursorText(
 		// Remove numbering (e.g., "2. ") from the next line
 		nextLineText = nextLineText.replace(/^\d+\.\s*/, "").trim();
 
-		return [currLineText + " " + nextLineText, currLineText.length];
+		return [currLineText + " " + nextLineText, currLineText.length + 1];
 	}
 	const currLineMatch = currLineText.match(/^(\d+)\.\s*/);
 	const nextLineMatch = nextLineText.match(/^\s*(\d+)\.\s*/);
