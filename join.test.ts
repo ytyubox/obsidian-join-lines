@@ -25,6 +25,17 @@ describe("join selected lines", () => {
 				line 1
 
 
+
+				line 2
+				`)
+		).toStrictEqual("line 1 line 2");
+	});
+	it("too many linebreak with 2 lines selection", () => {
+		expect(
+			joinLinesSelectText(dedent`
+				line 1
+
+
 				
 				line 2
 				`)
