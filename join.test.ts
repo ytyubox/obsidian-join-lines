@@ -67,9 +67,9 @@ describe("join cursor line", () => {
 	});
 
 	it("line with space suffix with line", () => {
-		expect(joinLinesCursorText("current line         ", "")).toStrictEqual(
-			"current line"
-		);
+		expect(
+			joinLinesCursorText("current line         ", "next line")
+		).toStrictEqual("current line next line");
 	});
 
 	it("line with trim suffix, empty next line", () => {
