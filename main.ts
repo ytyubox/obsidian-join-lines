@@ -1,5 +1,5 @@
 import { Editor, Plugin } from "obsidian";
-import { joinLinesSelectText, joinLinesCursorText } from "./join";
+import { joinLinesSelectText, joinNextLine, joinPreviousLine } from "./join";
 export default class JoinLinesPlugin extends Plugin {
 	async onload() {
 		this.addCommand({
@@ -34,10 +34,7 @@ function joinNextLines(editor: Editor) {
 	const nextLine = currLine + 1;
 	const currLineText = editor.getLine(currLine);
 	const nextLineText = editor.getLine(nextLine);
-	const [joinedText, cursorCH] = joinLinesCursorText(
-		currLineText,
-		nextLineText
-	);
+	const [joinedText, cursorCH] = joinNextLine(currLineText, nextLineText);
 	editor.replaceRange(
 		joinedText,
 		{ line: currLine, ch: 0 },
@@ -61,10 +58,7 @@ function joinPreviousLines(editor: Editor) {
 	const nextLine = currLine + 1;
 	const currLineText = editor.getLine(currLine);
 	const nextLineText = editor.getLine(nextLine);
-	const [joinedText, cursorCH] = joinLinesCursorText(
-		currLineText,
-		nextLineText
-	);
+	const [joinedText, cursorCH] = joinPreviousLine(currLineText, nextLineText);
 	editor.replaceRange(
 		joinedText,
 		{ line: currLine, ch: 0 },

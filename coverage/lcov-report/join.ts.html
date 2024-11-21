@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40.9% </span>
+                <span class="strong">34.61% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>18/44</span>
+                <span class='fraction'>18/52</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">46.66% </span>
+                <span class="strong">43.75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/15</span>
+                <span class='fraction'>7/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">57.14% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/6</span>
+                <span class='fraction'>4/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40.9% </span>
+                <span class="strong">34.61% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/44</span>
+                <span class='fraction'>18/52</span>
             </div>
         
             
@@ -144,8 +144,24 @@
 <a name='L79'></a><a href='#L79'>79</a>
 <a name='L80'></a><a href='#L80'>80</a>
 <a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -164,6 +180,22 @@
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -225,11 +257,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export function joinLinesSelectText(text: string): string {
-	return text.replace(/\n+/gm, " ");
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export function <span class="fstat-no" title="function not covered" >joinLinesSelectText(</span>text: string): string {
+<span class="cstat-no" title="statement not covered" >	return text.replace(/\n+/gm, " ");</span>
 }
 &nbsp;
-export function joinLinesCursorText(
+export function joinNextLine(
 	currLineText: string,
 	nextLineText: string
 ): [string, number] {
@@ -243,6 +275,22 @@ export function joinLinesCursorText(
 	nextLineText = trimMarkdownListSymbol(nextRestLine);
 &nbsp;
 	return [currLineText + " " + nextLineText, currLineText.length + 1];
+}
+&nbsp;
+export function <span class="fstat-no" title="function not covered" >joinPreviousLine(</span>
+	currLineText: string,
+	nextLineText: string
+): [string, number] {
+<span class="cstat-no" title="statement not covered" >	currLineText = currLineText.trimEnd();</span>
+<span class="cstat-no" title="statement not covered" >	<span class="missing-if-branch" title="if path not taken" >I</span>if (isNullOrEmpty(nextLineText)) {</span>
+<span class="cstat-no" title="statement not covered" >		return [currLineText, currLineText.length];</span>
+	}
+	const [currLineLevel, currRestLine] = <span class="cstat-no" title="statement not covered" >checkIndentLevel(currLineText);</span>
+	const [nextLineLevel, nextRestLine] = <span class="cstat-no" title="statement not covered" >checkIndentLevel(nextLineText);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >	nextLineText = trimMarkdownListSymbol(nextRestLine);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >	return [currLineText + " " + nextLineText, currLineText.length + 1];</span>
 }
 &nbsp;
 function isNullOrEmpty(str: string | null | undefined): boolean {
@@ -313,7 +361,7 @@ function <span class="fstat-no" title="function not covered" >joinLinesCursorTex
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-21T06:19:45.634Z
+                at 2024-11-21T06:26:38.356Z
             </div>
         <script src="prettify.js"></script>
         <script>

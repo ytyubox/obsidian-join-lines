@@ -2,7 +2,23 @@ export function joinLinesSelectText(text: string): string {
 	return text.replace(/\n+/gm, " ");
 }
 
-export function joinLinesCursorText(
+export function joinNextLine(
+	currLineText: string,
+	nextLineText: string
+): [string, number] {
+	currLineText = currLineText.trimEnd();
+	if (isNullOrEmpty(nextLineText)) {
+		return [currLineText, currLineText.length];
+	}
+	const [currLineLevel, currRestLine] = checkIndentLevel(currLineText);
+	const [nextLineLevel, nextRestLine] = checkIndentLevel(nextLineText);
+
+	nextLineText = trimMarkdownListSymbol(nextRestLine);
+
+	return [currLineText + " " + nextLineText, currLineText.length + 1];
+}
+
+export function joinPreviousLine(
 	currLineText: string,
 	nextLineText: string
 ): [string, number] {
