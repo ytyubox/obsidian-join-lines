@@ -6,14 +6,14 @@ export default class JoinLinesPlugin extends Plugin {
 			id: "join-next-lines",
 			name: "Join next lines",
 			editorCallback(editor) {
-				joinLines(editor);
+				joinNextLines(editor);
 			},
 		});
 		this.addCommand({
 			id: "join-previous-lines",
 			name: "Join previous lines",
 			editorCallback(editor) {
-				joinLines(editor);
+				joinPreviousLines(editor);
 			},
 		});
 	}
