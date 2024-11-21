@@ -126,7 +126,7 @@ describe("join cursor line", () => {
 			26,
 		]);
 	});
-	fit("indented bullet list line, next lower indented bullet list", () => {
+	it("indented bullet list line, next lower indented bullet list", () => {
 		const s = "  ";
 		expect(
 			joinLinesCursorText(`${s}- current line`, `${s}${s}- next line`)
