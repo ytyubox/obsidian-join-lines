@@ -11,12 +11,11 @@ export function joinLinesCursorText(
 		return currLineText;
 	}
 	const currLineMatch = currLineText.match(/^(\d+)\.\s*/);
-  const currLineLevel = checkListLevel(currLineText);
-  const nextLineLevel = checkListLevel(nextLineText);
+	const currLineLevel = checkListLevel(currLineText);
+	const nextLineLevel = checkListLevel(nextLineText);
 	const nextLineMatch = nextLineText.match(/^\s*(\d+)\.\s*/);
-  if (currLineLevel === nextLineLevel) {
-
-  } else if (currLineMatch && nextLineMatch) {
+	if (currLineLevel === nextLineLevel) {
+	} else if (currLineMatch && nextLineMatch) {
 		const nextNumber = parseInt(currLineMatch[1]) + 1;
 		nextLineText = nextLineText
 			.replace(/^\s*\d+\.\s*/, `${nextNumber}. `)
