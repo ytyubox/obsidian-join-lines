@@ -34,7 +34,7 @@ function joinLines(editor: Editor) {
 	const nextLine = currLine + 1;
 	const currLineText = editor.getLine(currLine);
 	const nextLineText = editor.getLine(nextLine);
-	const joinedText = currLineText + " " + nextLineText;
+	const joinedText = jo
 	editor.replaceRange(
 		joinedText,
 		{ line: currLine, ch: 0 },
