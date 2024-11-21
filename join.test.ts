@@ -149,10 +149,10 @@ describe("join cursor previous line", () => {
 		);
 	});
 
-	xit("line with space suffix, current line", () => {
+	it("line with space suffix, current line", () => {
 		expect(
 			joinPreviousLine("previous line         ", "current line")
-		).toStrictEqual(["previous line current line", 13]);
+		).toStrictEqual(["previous line current line", 14]);
 	});
 
 	xit("line with prefix and a suffix, current line", () => {
