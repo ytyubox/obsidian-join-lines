@@ -5,10 +5,10 @@ export function joinLinesSelectText(text: string): string {
 export function joinLinesCursorText(
 	currLineText: string,
 	nextLineText: string
-): string {
+): [string, number] {
 	currLineText = currLineText.trimEnd();
 	if (isNullOrEmpty(nextLineText)) {
-		return currLineText;
+		return [currLineText, currLineText.length];
 	}
 	const currLineLevel = checkListLevel(currLineText);
 	const nextLineLevel = checkListLevel(nextLineText);
@@ -16,7 +16,8 @@ export function joinLinesCursorText(
 	if (currLineLevel === nextLineLevel) {
 		// Remove numbering (e.g., "2. ") from the next line
 		nextLineText = nextLineText.replace(/^\d+\.\s*/, "").trim();
-		return currLineText + " " + nextLineText;
+		const line = currLineText + " " + nextLineText;
+		return [line, line.length];
 	}
 	const currLineMatch = currLineText.match(/^(\d+)\.\s*/);
 	const nextLineMatch = nextLineText.match(/^\s*(\d+)\.\s*/);
@@ -25,9 +26,10 @@ export function joinLinesCursorText(
 		nextLineText = nextLineText
 			.replace(/^\s*\d+\.\s*/, `${nextNumber}. `)
 			.trim();
-		return `${currLineText}\n${nextLineText}`;
+		const line = `${currLineText}\n${nextLineText}`;
+		return [line, line.length];
 	}
-	return "";
+	return ["", 0];
 }
 
 function isNullOrEmpty(str: string | null | undefined): boolean {

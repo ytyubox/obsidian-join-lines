@@ -50,65 +50,69 @@ describe("join selected lines", () => {
 
 describe("join cursor line", () => {
 	it("empty next line", () => {
-		expect(joinLinesCursorText("current line", "")).toStrictEqual(
-			"current line"
-		);
+		expect(joinLinesCursorText("current line", "")).toStrictEqual([
+			"current line",
+			12,
+		]);
 	});
 	it("line with space suffix, empty next line", () => {
-		expect(joinLinesCursorText("current line         ", "")).toStrictEqual(
-			"current line"
-		);
+		expect(joinLinesCursorText("current line         ", "")).toStrictEqual([
+			"current line",
+			12,
+		]);
 	});
 
 	it("line with prefix and a suffix, empty next line", () => {
 		expect(
 			joinLinesCursorText("   current line         ", "")
-		).toStrictEqual("   current line");
+		).toStrictEqual(["   current line", 15]);
 	});
 
 	it("line with space suffix, next line", () => {
 		expect(
 			joinLinesCursorText("current line         ", "next line")
-		).toStrictEqual("current line next line");
+		).toStrictEqual(["current line next line", 22]);
 	});
 
 	it("line with prefix and a suffix, next line", () => {
 		expect(
 			joinLinesCursorText("   current line         ", "next line")
-		).toStrictEqual("   current line next line");
+		).toStrictEqual(["   current line next line", 25]);
 	});
 
 	it("line with prefix and a suffix, next line with prefix and a suffix", () => {
 		expect(
 			joinLinesCursorText("   current line         ", "    next line    ")
-		).toStrictEqual("   current line next line");
+		).toStrictEqual(["   current line next line", 25]);
 	});
 
 	it("order list line, next order list line", () => {
 		expect(
 			joinLinesCursorText("1. current line", "2. next line")
-		).toStrictEqual("1. current line next line");
+		).toStrictEqual(["1. current line next line", 25]);
 	});
 
 	it("order list line, next order list line", () => {
 		expect(
 			joinLinesCursorText("1. current line", "  1. next line")
-		).toStrictEqual(
+		).toStrictEqual([
 			dedent`
 			1. current line
 			2. next line
-			`
-		);
+			`,
+			28,
+		]);
 	});
 
 	it("order list 3. line, next order list line", () => {
 		expect(
 			joinLinesCursorText("3. current line", "  1. next line")
-		).toStrictEqual(
+		).toStrictEqual([
 			dedent`
 			3. current line
 			4. next line
-			`
-		);
+			`,
+			28,
+		]);
 	});
 });

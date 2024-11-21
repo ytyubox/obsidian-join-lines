@@ -27,11 +27,14 @@ function joinLines(editor: Editor) {
 	const nextLine = currLine + 1;
 	const currLineText = editor.getLine(currLine);
 	const nextLineText = editor.getLine(nextLine);
-	const joinedText = joinLinesCursorText(currLineText, nextLineText);
+	const [joinedText, cursorCH] = joinLinesCursorText(
+		currLineText,
+		nextLineText
+	);
 	editor.replaceRange(
 		joinedText,
 		{ line: currLine, ch: 0 },
 		{ line: nextLine, ch: nextLineText.length }
 	);
-	editor.setCursor({ line: currLine, ch: cursor.ch });
+	editor.setCursor({ line: currLine, ch: cursorCH });
 }
