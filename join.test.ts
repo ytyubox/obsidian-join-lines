@@ -95,13 +95,13 @@ describe("join cursor line", () => {
 	it("order list line, next order list line", () => {
 		expect(
 			joinLinesCursorText("1. current line", "  1. next line")
-		).toStrictEqual(["1. current line\n2. next line", 15]);
+		).toStrictEqual(["1. current line next line", 16]);
 	});
 	it("indented order list line, next order list line", () => {
 		const s = "  ";
 		expect(
 			joinLinesCursorText("  1. current line", "     1. next line")
-		).toStrictEqual([`${s}1. current line\n${s}2. next line`, 17]);
+		).toStrictEqual([`${s}1. current line next line`, 18]);
 	});
 
 	it("bullet list line, next bullet list line", () => {
@@ -118,18 +118,12 @@ describe("join cursor line", () => {
 	it("bullet list line, next indent bullet list line", () => {
 		expect(
 			joinLinesCursorText("- current line", "  - next line")
-		).toStrictEqual([
-			dedent`
-			- current line
-			- next line
-			`,
-			14,
-		]);
+		).toStrictEqual(["- current line next line", 15]);
 	});
 	it("indented bullet list line, next lower indented bullet list", () => {
 		const s = "  ";
 		expect(
 			joinLinesCursorText(`${s}- current line`, `${s}${s}- next line`)
-		).toStrictEqual([`${s}- current line\n${s}- next line`, 16]);
+		).toStrictEqual([`${s}- current line next line`, 17]);
 	});
 });
