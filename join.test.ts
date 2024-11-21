@@ -55,7 +55,7 @@ describe("join cursor line", () => {
 		);
 	});
 	it("line with space suffix, empty next line", () => {
-		expect(joinLinesCursorText("current line", "")).toStrictEqual(
+		expect(joinLinesCursorText("current line         ", "")).toStrictEqual(
 			"current line"
 		);
 	});

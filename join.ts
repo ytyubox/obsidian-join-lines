@@ -6,6 +6,7 @@ export function joinLinesCursorText(
 	currLineText: string,
 	nextLineText: string
 ) {
+	currLineText = currLineText.trim();
 	if (isNullOrEmpty(nextLineText)) {
 		return currLineText;
 	}
