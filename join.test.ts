@@ -72,7 +72,7 @@ describe("join cursor line", () => {
 		).toStrictEqual("current line next line");
 	});
 
-	it("line with trim suffix, empty next line", () => {
+	it("line with trim suffix, with  line", () => {
 		expect(
 			joinLinesCursorText("   current line         ", "")
 		).toStrictEqual("   current line");
