@@ -15,7 +15,7 @@ export function joinLinesCursorText(
 
 	if (currLineLevel === nextLineLevel) {
 		// Remove numbering (e.g., "2. ") from the next line
-		nextLineText = nextLineText.replace(/^\d+\.\s*/, "").trim();
+		nextLineText = trimMarkdownListSymbol(nextLineText);
 
 		return [currLineText + " " + nextLineText, currLineText.length + 1];
 	}
@@ -41,4 +41,7 @@ function checkListLevel(lineText: string): number {
 		return match[1].length / 2 + 1;
 	}
 	return 0;
+}
+function trimMarkdownListSymbol(lineText: string): string {
+	return lineText.replace(/^\s*([-*+]\s+|\d+\.\s+)/, "").trim();
 }

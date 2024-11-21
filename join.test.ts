@@ -104,13 +104,24 @@ describe("join cursor line", () => {
 		]);
 	});
 
-	it("order list 3. line, next order list line", () => {
+	fit("bullet list line, next bullet list line", () => {
 		expect(
-			joinLinesCursorText("3. current line", "  1. next line")
+			joinLinesCursorText("- current line", "- next line")
 		).toStrictEqual([
 			dedent`
-			3. current line
-			4. next line
+			- current line next line
+			`,
+			15,
+		]);
+	});
+
+	it("order list line, next indent bullet list line", () => {
+		expect(
+			joinLinesCursorText("- current line", "  - next line")
+		).toStrictEqual([
+			dedent`
+			- current line
+			- next line
 			`,
 			28,
 		]);
