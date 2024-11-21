@@ -15,7 +15,9 @@ export function joinLinesCursorText(
 	const nextLineLevel = checkListLevel(nextLineText);
 	const nextLineMatch = nextLineText.match(/^\s*(\d+)\.\s*/);
 	if (currLineLevel === nextLineLevel) {
-    
+		// Remove numbering (e.g., "2. ") from the next line
+		nextLineText = nextLineText.replace(/^\d+\.\s*/, "").trim();
+		return currLineText + " " + nextLineText;
 	} else if (currLineMatch && nextLineMatch) {
 		const nextNumber = parseInt(currLineMatch[1]) + 1;
 		nextLineText = nextLineText
@@ -23,10 +25,6 @@ export function joinLinesCursorText(
 			.trim();
 		return `${currLineText}\n${nextLineText}`;
 	}
-
-	// Remove numbering (e.g., "2. ") from the next line
-	nextLineText = nextLineText.replace(/^\d+\.\s*/, "").trim();
-	return currLineText + " " + nextLineText;
 }
 
 function isNullOrEmpty(str: string | null | undefined): boolean {
