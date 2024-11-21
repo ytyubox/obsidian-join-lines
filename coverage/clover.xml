@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1732161426561" clover="3.2.0">
-  <project timestamp="1732161426561" name="All files">
+<coverage generated="1732161436196" clover="3.2.0">
+  <project timestamp="1732161436196" name="All files">
     <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3" elements="15" coveredelements="15" complexity="0" loc="8" ncloc="8" packages="1" files="1" classes="1"/>
     <file name="join.ts" path="/Users/tsungyu/Desktop/Develop-plugin/.obsidian/plugins/obsidian-join-lines/join.ts">
       <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="5" type="stmt"/>
       <line num="5" count="1" type="stmt"/>
-      <line num="9" count="5" type="stmt"/>
-      <line num="10" count="5" type="cond" truecount="1" falsecount="0"/>
+      <line num="9" count="6" type="stmt"/>
+      <line num="10" count="6" type="cond" truecount="1" falsecount="0"/>
       <line num="11" count="3" type="stmt"/>
-      <line num="13" count="2" type="stmt"/>
-      <line num="17" count="5" type="cond" truecount="3" falsecount="0"/>
+      <line num="13" count="3" type="stmt"/>
+      <line num="17" count="6" type="cond" truecount="3" falsecount="0"/>
     </file>
   </project>
 </coverage>

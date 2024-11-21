@@ -77,4 +77,9 @@ describe("join cursor line", () => {
 			joinLinesCursorText("   current line         ", "next line")
 		).toStrictEqual("   current line next line");
 	});
+	it("line with prefix and a suffix, with next line", () => {
+		expect(
+			joinLinesCursorText("   current line         ", "next line")
+		).toStrictEqual("   current line next line");
+	});
 });
