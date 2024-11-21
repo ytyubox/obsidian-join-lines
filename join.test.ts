@@ -80,8 +80,7 @@ describe("join cursor line", () => {
 
 	it("line with prefix and a suffix, next line with prefix and a suffix", () => {
 		expect(
-			joinLinesCursorText("   current line         ", 
-				"    next line    ")
+			joinLinesCursorText("   current line         ", "    next line    ")
 		).toStrictEqual("   current line next line");
 	});
 });
