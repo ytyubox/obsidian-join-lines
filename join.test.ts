@@ -19,7 +19,7 @@ describe("join selected lines", () => {
 		).toStrictEqual("line 1 line 2");
 	});
 	
-	it("lines selection", () => {
+	it("too many lines selection", () => {
 		expect(
 			joinLinesSelectText(dedent`
 				line 1
