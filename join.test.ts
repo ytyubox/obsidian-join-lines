@@ -115,7 +115,7 @@ describe("join cursor line", () => {
 		]);
 	});
 
-	fit("order list line, next indent bullet list line", () => {
+	it("order list line, next indent bullet list line", () => {
 		expect(
 			joinLinesCursorText("- current line", "  - next line")
 		).toStrictEqual([
