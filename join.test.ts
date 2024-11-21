@@ -143,9 +143,9 @@ describe("join cursor previous line", () => {
 		]);
 	});
 
-	xit("line with prefix and a suffix, empty previous line", () => {
+	it("line with prefix and a suffix, empty previous line", () => {
 		expect(joinPreviousLine("   previous line         ", "")).toStrictEqual(
-			["   previous line", 15]
+			["   previous line", 16]
 		);
 	});
 
