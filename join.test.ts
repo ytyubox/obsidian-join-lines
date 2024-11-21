@@ -92,18 +92,12 @@ describe("join cursor line", () => {
 		).toStrictEqual(["1. current line next line", 16]);
 	});
 
-	it("order list line, next order list line", () => {
+	fit("order list line, next order list line", () => {
 		expect(
 			joinLinesCursorText("1. current line", "  1. next line")
-		).toStrictEqual([
-			dedent`
-			1. current line
-			2. next line
-			`,
-			28,
-		]);
+		).toStrictEqual(["1. current line\n2. next line", 28]);
 	});
-	fit("indented order list line, next order list line", () => {
+	it("indented order list line, next order list line", () => {
 		const s = "  ";
 		expect(
 			joinLinesCursorText("  1. current line", "     1. next line")
