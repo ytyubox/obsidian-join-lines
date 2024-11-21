@@ -19,19 +19,23 @@ export function joinNextLine(
 }
 
 export function joinPreviousLine(
-	currLineText: string,
-	nextLineText: string
+	previousLineText: string,
+	currentLineText: string
 ): [string, number] {
-	currLineText = currLineText.trimEnd();
-	if (isNullOrEmpty(nextLineText)) {
-		return [currLineText, currLineText.length];
+	previousLineText = previousLineText.trimEnd();
+	if (isNullOrEmpty(currentLineText)) {
+		return [previousLineText, previousLineText.length];
 	}
-	const [currLineLevel, currRestLine] = checkIndentLevel(currLineText);
-	const [nextLineLevel, nextRestLine] = checkIndentLevel(nextLineText);
 
-	nextLineText = trimMarkdownListSymbol(nextRestLine);
+	const [currLineLevel, currRestLine] = checkIndentLevel(previousLineText);
+	const [nextLineLevel, nextRestLine] = checkIndentLevel(currentLineText);
 
-	return [currLineText + " " + nextLineText, currLineText.length + 1];
+	currentLineText = trimMarkdownListSymbol(nextRestLine);
+
+	return [
+		previousLineText + " " + currentLineText,
+		previousLineText.length + 1,
+	];
 }
 
 function isNullOrEmpty(str: string | null | undefined): boolean {

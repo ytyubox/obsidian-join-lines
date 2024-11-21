@@ -50,19 +50,23 @@ function joinPreviousLines(editor: Editor) {
 		editor.replaceSelection(joinedText);
 		return;
 	}
+
 	// No text selected:
 	// join current line with next line,
 	// and preserve the cursor position
 	const cursor = editor.getCursor();
 	const currLine = cursor.line;
-	const nextLine = currLine + 1;
+	const previousLine = currLine - 1;
 	const currLineText = editor.getLine(currLine);
-	const nextLineText = editor.getLine(nextLine);
-	const [joinedText, cursorCH] = joinPreviousLine(currLineText, nextLineText);
+	const previousLineText = editor.getLine(previousLine);
+	const [joinedText, cursorCH] = joinPreviousLine(
+		previousLineText,
+		currLineText
+	);
 	editor.replaceRange(
 		joinedText,
-		{ line: currLine, ch: 0 },
-		{ line: nextLine, ch: nextLineText.length }
+		{ line: previousLine, ch: -previousLineText.length },
+		{ line: currLine, ch: currLineText.length }
 	);
-	editor.setCursor({ line: currLine, ch: cursorCH });
+	editor.setCursor({ line: previousLine, ch: cursorCH });
 }
