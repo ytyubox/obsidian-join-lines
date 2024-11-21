@@ -7,5 +7,7 @@ describe("join lines", () => {
 	it("1 line selection", () => {
 		expect(joinLinesSelectText("line 1")).toStrictEqual("line 1");
 	});
-	
+	it("2 line selection", () => {
+		expect(joinLinesSelectText("line 1")).toStrictEqual("line 1");
+	});
 });
