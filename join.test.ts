@@ -133,13 +133,13 @@ describe("join cursor previous line", () => {
 	it("empty previous line", () => {
 		expect(joinPreviousLine("previous line", "")).toStrictEqual([
 			"previous line",
-			12,
+			13,
 		]);
 	});
-	xit("line with space suffix, empty previous line", () => {
+	it("line with space suffix, empty previous line", () => {
 		expect(joinPreviousLine("previous line         ", "")).toStrictEqual([
 			"previous line",
-			12,
+			13,
 		]);
 	});
 
