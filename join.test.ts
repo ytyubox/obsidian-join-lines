@@ -10,7 +10,7 @@ describe("join selected lines", () => {
 		expect(joinLinesSelectText("line 1")).toStrictEqual("line 1");
 	});
 
-	it("2 line selection", () => {
+	it("2 lines selection", () => {
 		expect(
 			joinLinesSelectText(dedent`
 				line 1
