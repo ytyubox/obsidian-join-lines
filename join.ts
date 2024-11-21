@@ -40,7 +40,7 @@ function checkIndentLevel(lineText: string): [number, string] {
 	const match = lineText.match(/^(\s*)([-*+]\s+|\d+\.)/);
 	if (match && match != undefined) {
 		const level = match[0].length / 2 + 1;
-		console.log(match[0], match[0].length, level);
+		console.log(match, match[0].length, level);
 		return [level, lineText.trimStart()];
 	}
 	return [0, lineText];
