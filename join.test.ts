@@ -50,7 +50,12 @@ describe("test join behavior", () => {
 				
 				line 3
 				`)
-			).toStrictEqual("line 1\nline 2\nline 3");
+			).toStrictEqual(
+				dedent`
+				line 1
+				line 2
+				line 3`
+			);
 		});
 	});
 
