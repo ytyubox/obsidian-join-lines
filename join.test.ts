@@ -49,7 +49,7 @@ describe("join selected lines", () => {
 });
 
 describe("join cursor line", () => {
-	it("empty select", () => {
+	it("empty lines", () => {
 		expect(joinLinesSelectText("")).toStrictEqual("");
 	});
 });
