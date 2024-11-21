@@ -32,7 +32,8 @@ describe("test join behavior", () => {
 			).toStrictEqual(
 				dedent`
 				line 1
-				line 2`
+				line 2
+				`
 			);
 		});
 		it("too many linebreak with 3 lines selection", () => {
