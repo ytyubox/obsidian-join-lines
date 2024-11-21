@@ -10,6 +10,9 @@ export function joinLinesCursorText(
 	if (isNullOrEmpty(nextLineText)) {
 		return currLineText;
 	}
+    // Remove numbering (e.g., "2. ") from the next line
+    nextLineText = nextLineText.replace(/^\d+\.\s*/, "").trim();
+    return currLineText + " " + nextLineText;
 	return currLineText + " " + nextLineText.trim();
 }
 
