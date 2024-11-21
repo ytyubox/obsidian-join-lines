@@ -170,44 +170,44 @@ describe("join cursor previous line", () => {
 		).toStrictEqual(["   previous line current line", 17]);
 	});
 
-	xit("order list line, next order list line", () => {
+	it("order list line, next order list line", () => {
 		expect(
 			joinPreviousLine("1. previous line", "2. current line")
-		).toStrictEqual(["1. previous line current line", 16]);
+		).toStrictEqual(["1. previous line current line", 17]);
 	});
 
-	xit("order list line, next order list line", () => {
+	it("order list line, next order list line", () => {
 		expect(
 			joinPreviousLine("1. previous line", "  1. current line")
-		).toStrictEqual(["1. previous line current line", 16]);
+		).toStrictEqual(["1. previous line current line", 17]);
 	});
-	xit("indented order list line, next order list line", () => {
+	it("indented order list line, next order list line", () => {
 		const s = "  ";
 		expect(
 			joinPreviousLine("  1. previous line", "     1. current line")
-		).toStrictEqual([`${s}1. previous line current line`, 18]);
+		).toStrictEqual([`${s}1. previous line current line`, 19]);
 	});
 
-	xit("bullet list line, next bullet list line", () => {
+	it("bullet list line, next bullet list line", () => {
 		expect(
 			joinPreviousLine("- previous line", "- current line")
 		).toStrictEqual([
 			dedent`
 			- previous line current line
 			`,
-			15,
+			16,
 		]);
 	});
 
-	xit("bullet list line, next indent bullet list line", () => {
+	it("bullet list line, next indent bullet list line", () => {
 		expect(
 			joinPreviousLine("- previous line", "  - current line")
-		).toStrictEqual(["- previous line current line", 15]);
+		).toStrictEqual(["- previous line current line", 16]);
 	});
-	xit("indented bullet list line, next lower indented bullet list", () => {
+	it("indented bullet list line, next lower indented bullet list", () => {
 		const s = "  ";
 		expect(
 			joinPreviousLine(`${s}- previous line`, `${s}${s}- current line`)
-		).toStrictEqual([`${s}- previous line current line`, 17]);
+		).toStrictEqual([`${s}- previous line current line`, 18]);
 	});
 });
