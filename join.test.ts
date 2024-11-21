@@ -50,6 +50,6 @@ describe("join selected lines", () => {
 
 describe("join cursor line", () => {
 	it("empty lines", () => {
-		expect(joinLinesSelectText("")).toStrictEqual("");
+		expect(joinLinesCursorText("", "")).toStrictEqual("");
 	});
 });
