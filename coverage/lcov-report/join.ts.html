@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.69% </span>
+                <span class="strong">74.07% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/26</span>
+                <span class='fraction'>20/27</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.63% </span>
+                <span class="strong">81.81% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/11</span>
+                <span class='fraction'>9/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/5</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.69% </span>
+                <span class="strong">74.07% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/26</span>
+                <span class='fraction'>20/27</span>
             </div>
         
             
@@ -112,7 +112,8 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,20 +130,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -155,11 +156,12 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export function <span class="fstat-no" title="function not covered" >joinLinesSelectText(</span>text: string): string {
 <span class="cstat-no" title="statement not covered" >	return text.replace(/\n+/gm, " ");</span>
@@ -176,22 +178,22 @@ export function joinLinesCursorText(
 	const [currLineLevel, currRestLine] = checkIndentLevel(currLineText);
 	const [nextLineLevel, nextRestLine] = checkIndentLevel(nextLineText);
 &nbsp;
-	if (currLineLevel == nextLineLevel) {
+	<span class="missing-if-branch" title="if path not taken" >I</span>if (currLineLevel == nextLineLevel) {
 		// Remove numbering (e.g., "2. ") from the next line
-		nextLineText = trimMarkdownListSymbol(nextRestLine);
+<span class="cstat-no" title="statement not covered" >		nextLineText = trimMarkdownListSymbol(nextRestLine);</span>
 &nbsp;
-		return [currLineText + " " + nextLineText, currLineText.length + 1];
+<span class="cstat-no" title="statement not covered" >		return [currLineText + " " + nextLineText, currLineText.length + 1];</span>
 	}
 &nbsp;
-	const currLineMatch = <span class="cstat-no" title="statement not covered" >currLineText.match(/^(\d+)\.\s*/);</span>
-	const nextLineMatch = <span class="cstat-no" title="statement not covered" >nextLineText.match(/^\s*(\d+)\.\s*/);</span>
-<span class="cstat-no" title="statement not covered" >	<span class="missing-if-branch" title="if path not taken" >I</span>if (currLineMatch &amp;&amp; nextLineMatch) {</span>
-		const nextNumber = <span class="cstat-no" title="statement not covered" >parseInt(currLineMatch[1]) + 1;</span>
-<span class="cstat-no" title="statement not covered" >		nextLineText = nextLineText</span>
+	const currLineMatch = currLineText.match(/^(\d+)\.\s*/);
+	const nextLineMatch = nextLineText.match(/^\s*(\d+)\.\s*/);
+	if (currLineMatch &amp;&amp; nextLineMatch) {
+		const nextNumber = parseInt(currLineMatch[1]) + 1;
+		nextLineText = nextLineText
 			.replace(/^\s*\d+\.\s*/, `${nextNumber}. `)
 			.trim();
-		const line = <span class="cstat-no" title="statement not covered" >`${currLineText}\n${nextLineText}`;</span>
-<span class="cstat-no" title="statement not covered" >		return [line, line.length];</span>
+		const line = `${currLineText}\n${nextLineText}`;
+		return [line, line.length];
 	}
 <span class="cstat-no" title="statement not covered" >	return ["__FAILURE_CASE__", -9999999999999];</span>
 }
@@ -200,15 +202,16 @@ function isNullOrEmpty(str: string | null | undefined): boolean {
 	return str === null || str === undefined || str.trim().length === 0;
 }
 function checkIndentLevel(lineText: string): [number, string] {
-	const match = lineText.match(/^(\s*)[-*+]\s+|\d+\./);
-	console.log(match);
+	const match = lineText.match(/^(\s*)([-*+]\s+|\d+\.)/);
 	if (match &amp;&amp; match != undefined) {
-		return [match[0].length / 2 + 1, lineText.trimStart()];
+		const level = match[0].length / 2 + 1;
+		console.log(match[0], match[0].length, level);
+		return [level, lineText.trimStart()];
 	}
 <span class="cstat-no" title="statement not covered" >	return [0, lineText];</span>
 }
-function trimMarkdownListSymbol(lineText: string): string {
-	return lineText.replace(/^\s*([-*+]\s+|\d+\.\s+)/, "").trim();
+function <span class="fstat-no" title="function not covered" >trimMarkdownListSymbol(</span>lineText: string): string {
+<span class="cstat-no" title="statement not covered" >	return lineText.replace(/^\s*([-*+]\s+|\d+\.\s+)/, "").trim();</span>
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -217,7 +220,7 @@ function trimMarkdownListSymbol(lineText: string): string {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-21T04:54:10.735Z
+                at 2024-11-21T04:57:23.984Z
             </div>
         <script src="prettify.js"></script>
         <script>

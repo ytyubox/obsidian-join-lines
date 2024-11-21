@@ -37,10 +37,11 @@ function isNullOrEmpty(str: string | null | undefined): boolean {
 	return str === null || str === undefined || str.trim().length === 0;
 }
 function checkIndentLevel(lineText: string): [number, string] {
-	const match = lineText.match(/^(\s*)[-*+]\s+|\d+\./);
-	console.log(match);
+	const match = lineText.match(/^(\s*)([-*+]\s+|\d+\.)/);
 	if (match && match != undefined) {
-		return [match[0].length / 2 + 1, lineText.trimStart()];
+		const level = match[0].length / 2 + 1;
+		console.log(match[0], match[0].length, level);
+		return [level, lineText.trimStart()];
 	}
 	return [0, lineText];
 }
