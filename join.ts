@@ -10,7 +10,7 @@ export function joinLinesCursorText(
 	if (isNullOrEmpty(nextLineText)) {
 		return currLineText;
 	}
-	return currLineText + " " + nextLineText;
+	return currLineText + " " + nextLineText.trim();
 }
 
 function isNullOrEmpty(str: string | null | undefined): boolean {
