@@ -15,6 +15,7 @@ export function joinLinesCursorText(
 	const nextLineLevel = checkListLevel(nextLineText);
 	const nextLineMatch = nextLineText.match(/^\s*(\d+)\.\s*/);
 	if (currLineLevel === nextLineLevel) {
+    
 	} else if (currLineMatch && nextLineMatch) {
 		const nextNumber = parseInt(currLineMatch[1]) + 1;
 		nextLineText = nextLineText
