@@ -1,7 +1,7 @@
 test("adds 1 + 2 to equal 3", () => {
 	// Arrange
-	let x: number = 1,
-		y: number = 3;
+	let x: number = 2,
+		y: number = 2;
 	let expected: number = 4;
 
 	// Act
