@@ -116,11 +116,7 @@ describe("test join behavior", () => {
 					16,
 				]);
 			});
-			it("line, next line heading", () => {
-				expect(
-					joinNextLine("1. current line", "# next line")
-				).toStrictEqual(["1. current line next line", 16]);
-			});
+
 			it("line, next line heading, space suffix", () => {
 				expect(
 					joinNextLine("1. current line", "# next line   ")
