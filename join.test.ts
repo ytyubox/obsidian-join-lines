@@ -101,7 +101,7 @@ describe("test join behavior", () => {
 				).toStrictEqual(["   current line next line", 16]);
 			});
 		});
-		describe("line and heading 1", () => {
+		describe("line and heading", () => {
 			test.each([
 				["1. current line", "# next line"],
 				["1. current line", "## next line"],
@@ -110,7 +110,12 @@ describe("test join behavior", () => {
 				["1. current line", "##### next line"],
 				["1. current line", "###### next line"],
 				["1. current line", "####### next line"],
-			]);
+			])("line, next line h1~h6", (a, b) => {
+				expect(joinNextLine(a, b)).toStrictEqual([
+					"1. current line next line",
+					16,
+				]);
+			});
 			it("line, next line heading", () => {
 				expect(
 					joinNextLine("1. current line", "# next line")
