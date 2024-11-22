@@ -101,7 +101,7 @@ describe("test join behavior", () => {
 				).toStrictEqual(["   current line next line", 16]);
 			});
 		});
-		fit("line, next line heading", () => {
+		it("line, next line heading", () => {
 			expect(
 				joinNextLine("1. current line", "# next line")
 			).toStrictEqual(["1. current line next line", 16]);
