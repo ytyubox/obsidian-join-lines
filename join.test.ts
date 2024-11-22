@@ -61,44 +61,51 @@ describe("test join behavior", () => {
 	});
 
 	describe("join cursor next line", () => {
-		it("empty next line", () => {
-			expect(joinNextLine("current line", "")).toStrictEqual([
-				"current line",
-				12,
-			]);
-		});
-		it("line with space suffix, empty next line", () => {
-			expect(joinNextLine("current line         ", "")).toStrictEqual([
-				"current line",
-				12,
-			]);
-		});
+		describe("plain line", () => {
+			it("empty next line", () => {
+				expect(joinNextLine("current line", "")).toStrictEqual([
+					"current line",
+					12,
+				]);
+			});
+			it("line with space suffix, empty next line", () => {
+				expect(joinNextLine("current line         ", "")).toStrictEqual(
+					["current line", 12]
+				);
+			});
 
-		it("line with prefix and a suffix, empty next line", () => {
-			expect(joinNextLine("   current line         ", "")).toStrictEqual([
-				"   current line",
-				15,
-			]);
-		});
+			it("line with prefix and a suffix, empty next line", () => {
+				expect(
+					joinNextLine("   current line         ", "")
+				).toStrictEqual(["   current line", 15]);
+			});
 
-		it("line with space suffix, next line", () => {
+			it("line with space suffix, next line", () => {
+				expect(
+					joinNextLine("current line         ", "next line")
+				).toStrictEqual(["current line next line", 13]);
+			});
+
+			it("line with prefix and a suffix, next line", () => {
+				expect(
+					joinNextLine("   current line         ", "next line")
+				).toStrictEqual(["   current line next line", 16]);
+			});
+
+			it("line with prefix and a suffix, next line with prefix and a suffix", () => {
+				expect(
+					joinNextLine(
+						"   current line         ",
+						"    next line    "
+					)
+				).toStrictEqual(["   current line next line", 16]);
+			});
+		});
+		fit("line, next line heading", () => {
 			expect(
-				joinNextLine("current line         ", "next line")
-			).toStrictEqual(["current line next line", 13]);
+				joinNextLine("1. current line", "# next line")
+			).toStrictEqual(["1. current line next line", 16]);
 		});
-
-		it("line with prefix and a suffix, next line", () => {
-			expect(
-				joinNextLine("   current line         ", "next line")
-			).toStrictEqual(["   current line next line", 16]);
-		});
-
-		it("line with prefix and a suffix, next line with prefix and a suffix", () => {
-			expect(
-				joinNextLine("   current line         ", "    next line    ")
-			).toStrictEqual(["   current line next line", 16]);
-		});
-
 		it("order list line, next order list line", () => {
 			expect(
 				joinNextLine("1. current line", "2. next line")
