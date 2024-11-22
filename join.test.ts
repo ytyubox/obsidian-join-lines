@@ -102,6 +102,7 @@ describe("test join behavior", () => {
 			});
 		});
 		describe("line and heading 1", () => {
+			test.each([["1. current line", "# next line"]]);
 			it("line, next line heading", () => {
 				expect(
 					joinNextLine("1. current line", "# next line")
