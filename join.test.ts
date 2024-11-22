@@ -101,10 +101,17 @@ describe("test join behavior", () => {
 				).toStrictEqual(["   current line next line", 16]);
 			});
 		});
-		it("line, next line heading", () => {
-			expect(
-				joinNextLine("1. current line", "# next line")
-			).toStrictEqual(["1. current line next line", 16]);
+		describe("line and heading", () => {
+			it("line, next line heading", () => {
+				expect(
+					joinNextLine("1. current line", "# next line")
+				).toStrictEqual(["1. current line next line", 16]);
+			});
+			it("line, next line not heading, prefixxed", () => {
+				expect(
+					joinNextLine("1. current line", "  # next line")
+				).toStrictEqual(["1. current line # next line", 16]);
+			});
 		});
 		it("order list line, next order list line", () => {
 			expect(
