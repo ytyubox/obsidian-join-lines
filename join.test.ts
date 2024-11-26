@@ -128,73 +128,73 @@ describe("test join behavior", () => {
 				).toStrictEqual(["1. current line # next line", 16]);
 			});
 		});
+		describe("line and list", () => {
+			it("empty line, next order list line", () => {
+				expect(joinNextLine("", "2. next line")).toStrictEqual([
+					"2. next line",
+					0,
+				]);
+			});
+			it("space line, next order list line", () => {
+				expect(joinNextLine("   ", "2. next line")).toStrictEqual([
+					"2. next line",
+					0,
+				]);
+			});
+			it("order list line, next order list line", () => {
+				expect(
+					joinNextLine("1. current line", "2. next line")
+				).toStrictEqual(["1. current line next line", 16]);
+			});
 
-		it("empty line, next order list line", () => {
-			expect(joinNextLine("", "2. next line")).toStrictEqual([
-				"2. next line",
-				0,
-			]);
-		});
-		it("space line, next order list line", () => {
-			expect(joinNextLine("   ", "2. next line")).toStrictEqual([
-				"2. next line",
-				0,
-			]);
-		});
-		it("order list line, next order list line", () => {
-			expect(
-				joinNextLine("1. current line", "2. next line")
-			).toStrictEqual(["1. current line next line", 16]);
-		});
+			it("order list line, next order list line", () => {
+				expect(
+					joinNextLine("1. current line", "  1. next line")
+				).toStrictEqual(["1. current line next line", 16]);
+			});
+			it("indented order list line, next order list line", () => {
+				const s = "  ";
+				expect(
+					joinNextLine("  1. current line", "     1. next line")
+				).toStrictEqual([`${s}1. current line next line`, 18]);
+			});
 
-		it("order list line, next order list line", () => {
-			expect(
-				joinNextLine("1. current line", "  1. next line")
-			).toStrictEqual(["1. current line next line", 16]);
-		});
-		it("indented order list line, next order list line", () => {
-			const s = "  ";
-			expect(
-				joinNextLine("  1. current line", "     1. next line")
-			).toStrictEqual([`${s}1. current line next line`, 18]);
-		});
-
-		it("bullet list line, next bullet list line", () => {
-			expect(joinNextLine("- current line", "- next line")).toStrictEqual(
-				[
+			it("bullet list line, next bullet list line", () => {
+				expect(
+					joinNextLine("- current line", "- next line")
+				).toStrictEqual([
 					dedent`
 			- current line next line
 			`,
 					15,
-				]
-			);
-		});
+				]);
+			});
 
-		it("empty line, next bullet list line", () => {
-			expect(joinNextLine("", "- next line")).toStrictEqual([
-				"- next line",
-				0,
-			]);
-		});
-		it("space line, next bullet list line", () => {
-			expect(joinNextLine("   ", "- next line")).toStrictEqual([
-				"- next line",
-				0,
-			]);
-		});
-		it("bullet list line, next indent bullet list line", () => {
-			expect(
-				joinNextLine("- current line", "  - next line")
-			).toStrictEqual(["- current line next line", 15]);
-		});
-		it("indented bullet list line, next lower indented bullet list", () => {
-			const s = "  ";
-			expect(
-				joinNextLine(`${s}- current line`, `${s}${s}- next line`)
-			).toStrictEqual([`${s}- current line next line`, 17]);
+			it("empty line, next bullet list line", () => {
+				expect(joinNextLine("", "- next line")).toStrictEqual([
+					"- next line",
+					0,
+				]);
+			});
+			it("space line, next bullet list line", () => {
+				expect(joinNextLine("   ", "- next line")).toStrictEqual([
+					"- next line",
+					0,
+				]);
+			});
+			it("bullet list line, next indent bullet list line", () => {
+				expect(
+					joinNextLine("- current line", "  - next line")
+				).toStrictEqual(["- current line next line", 15]);
+			});
+			it("indented bullet list line, next lower indented bullet list", () => {
+				const s = "  ";
+				expect(
+					joinNextLine(`${s}- current line`, `${s}${s}- next line`)
+				).toStrictEqual([`${s}- current line next line`, 17]);
+			});
 		});
 	});
-
 	describe("join cursor previous line", () => {
 		it("empty previous line", () => {
 			expect(joinPreviousLine("previous line", "")).toStrictEqual([
