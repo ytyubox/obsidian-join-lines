@@ -13,6 +13,9 @@ export function joinNextLine(
 	if (isNullOrEmpty(nextLineText)) {
 		return [currLineText, currLineText.length];
 	}
+	if (isNullOrEmpty(currLineText)) {
+		return [nextLineText, 0];
+	}
 
 	const [currLineLevel, currRestLine] = checkIndentLevel(currLineText);
 	const [nextLineLevel, nextRestLine] = checkIndentLevel(nextLineText);
