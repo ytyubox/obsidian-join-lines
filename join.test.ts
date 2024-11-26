@@ -133,6 +133,12 @@ describe("test join behavior", () => {
 					0,
 				]);
 			});
+			it("space line, next line heading ", () => {
+				expect(joinNextLine("    ", "  # next line")).toStrictEqual([
+					"# next line",
+					0,
+				]);
+			});
 		});
 		describe("line and list", () => {
 			it("empty line, next order list line", () => {
