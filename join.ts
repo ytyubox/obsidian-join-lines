@@ -14,6 +14,7 @@ export function joinNextLine(
 		return [currLineText, currLineText.length];
 	}
 	if (isNullOrEmpty(currLineText)) {
+		nextLineText = nextLineText.trim();
 		return [nextLineText, 0];
 	}
 

@@ -127,6 +127,12 @@ describe("test join behavior", () => {
 					joinNextLine("1. current line", "  # next line")
 				).toStrictEqual(["1. current line # next line", 16]);
 			});
+			it("empty line, next line heading ", () => {
+				expect(joinNextLine("", "  # next line")).toStrictEqual([
+					"# next line",
+					0,
+				]);
+			});
 		});
 		describe("line and list", () => {
 			it("empty line, next order list line", () => {
