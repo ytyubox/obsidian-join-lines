@@ -170,13 +170,13 @@ describe("test join behavior", () => {
 			);
 		});
 
-		fit("empty line, next bullet list line", () => {
+		it("empty line, next bullet list line", () => {
 			expect(joinNextLine("", "- next line")).toStrictEqual([
 				"- next line",
 				0,
 			]);
 		});
-		fit("space line, next bullet list line", () => {
+		it("space line, next bullet list line", () => {
 			expect(joinNextLine("   ", "- next line")).toStrictEqual([
 				"- next line",
 				0,
