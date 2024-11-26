@@ -129,13 +129,13 @@ describe("test join behavior", () => {
 			});
 		});
 
-		fit("empty line, next order list line", () => {
+		it("empty line, next order list line", () => {
 			expect(joinNextLine("", "2. next line")).toStrictEqual([
 				"2. next line",
 				0,
 			]);
 		});
-		fit("space line, next order list line", () => {
+		it("space line, next order list line", () => {
 			expect(joinNextLine("   ", "2. next line")).toStrictEqual([
 				"2. next line",
 				0,
@@ -170,6 +170,18 @@ describe("test join behavior", () => {
 			);
 		});
 
+		fit("empty line, next bullet list line", () => {
+			expect(joinNextLine("", "- next line")).toStrictEqual([
+				"- next line",
+				0,
+			]);
+		});
+		fit("space line, next bullet list line", () => {
+			expect(joinNextLine("   ", "- next line")).toStrictEqual([
+				"- next line",
+				0,
+			]);
+		});
 		it("bullet list line, next indent bullet list line", () => {
 			expect(
 				joinNextLine("- current line", "  - next line")
