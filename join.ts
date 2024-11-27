@@ -15,6 +15,7 @@ export function joinNextLine(
 	}
 	if (isNullOrEmpty(currLineText)) {
 		nextLineText = nextLineText.trim();
+		nextLineText = trimMarkdownListSymbol(nextLineText);
 		return [nextLineText, 0];
 	}
 

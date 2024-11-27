@@ -147,6 +147,12 @@ describe("test join behavior", () => {
 					0,
 				]);
 			});
+			fit("empty line, next order list line", () => {
+				expect(joinNextLine("", "2. 2. next line")).toStrictEqual([
+					"2. next line",
+					0,
+				]);
+			});
 			it("space line, next order list line", () => {
 				expect(joinNextLine("   ", "2. next line")).toStrictEqual([
 					"2. next line",
