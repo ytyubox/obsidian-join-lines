@@ -15,7 +15,6 @@ export function joinNextLine(
 	}
 	if (isNullOrEmpty(currLineText)) {
 		nextLineText = nextLineText.trim();
-		nextLineText = trimMarkdownListSymbol(nextLineText);
 		return [nextLineText, 0];
 	}
 
@@ -74,7 +73,7 @@ function checkIndentLevel(lineText: string): [number, string] {
 }
 
 function trimMarkdownListSymbol(lineText: string): string {
-	return lineText.replace(/^\s*([-*+]\s+|\d+\.\s+)/, "").trim();
+	return lineText.replace(/^(\d+\.|\-)(?:\s(\d+\.|\-))*\s/, "").trim();
 }
 
 // function joinLinesCursorTextWithLists(

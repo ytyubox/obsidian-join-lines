@@ -147,12 +147,7 @@ describe("test join behavior", () => {
 					0,
 				]);
 			});
-			fit("empty line, next order list line", () => {
-				expect(joinNextLine("", "2. 2. next line")).toStrictEqual([
-					"2. next line",
-					0,
-				]);
-			});
+
 			it("space line, next order list line", () => {
 				expect(joinNextLine("   ", "2. next line")).toStrictEqual([
 					"2. next line",
@@ -176,7 +171,11 @@ describe("test join behavior", () => {
 					joinNextLine("  1. current line", "     1. next line")
 				).toStrictEqual([`${s}1. current line next line`, 18]);
 			});
-
+			it("list line, next order duplicated list line", () => {
+				expect(
+					joinNextLine("1. current line", "2. 2. next line")
+				).toStrictEqual(["1. current line next line", 16]);
+			});
 			it("bullet list line, next bullet list line", () => {
 				expect(
 					joinNextLine("- current line", "- next line")
