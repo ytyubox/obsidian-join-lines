@@ -62,6 +62,9 @@ describe("test join behavior", () => {
 			const slach = "\\";
 			expect(
 				joinLinesSelectText(dedent`
+
+
+					
 				$$
 				line 1
 				$$
@@ -74,6 +77,9 @@ describe("test join behavior", () => {
 				$$			
 				line 3
 				$$
+
+
+
 				`)
 			).toStrictEqual(dedent`
 				$$
