@@ -1,3 +1,47 @@
+function parseHeading(lineText: string): { level: number; text: string } {
+	const match = lineText.match(/^(#+)\s*(.*)$/);
+	if (match) {
+		return { level: match[1].length, text: match[2].trim() };
+	}
+	return { level: 0, text: lineText.trim() };
+}
+
+export function joinPreviousLine(
+	previousLineText: string,
+	currentLineText: string
+): [string, number] {
+	previousLineText = previousLineText.trimEnd();
+	if (isNullOrEmpty(currentLineText)) {
+		return [previousLineText, previousLineText.length];
+	}
+
+	const [currLineLevel, currRestLine] = checkIndentLevel(previousLineText);
+	const [nextLineLevel, nextRestLine] = checkIndentLevel(currentLineText);
+
+	currentLineText = trimMarkdownListSymbol(nextRestLine);
+
+	return [
+		previousLineText + " " + currentLineText,
+		previousLineText.length + 1,
+	];
+}
+function isNullOrEmpty(str: string | null | undefined): boolean {
+	return str === null || str === undefined || str.trim().length === 0;
+}
+function checkIndentLevel(lineText: string): [number, string] {
+	const match = lineText.match(/^([\s]+)([-*+]\s+|\d+\.\s+)/);
+	if (match && match != undefined) {
+		const matching = match[1];
+		const level = matching.length;
+		return [level, lineText.trimStart()];
+	}
+	return [0, lineText];
+}
+
+function trimMarkdownListSymbol(lineText: string): string {
+	return lineText.replace(/^(\d+\.|\-)(?:\s(\d+\.|\-))*\s/, "").trim();
+}
+
 export function joinLinesSelectText(text: string): string {
 	const match = text.match(/\n{2,}/);
 	if (match?.length) {
@@ -52,50 +96,6 @@ export function joinNextLine(
 		nextLineText = trimMarkdownListSymbol(nextRestLine);
 	}
 	return [currLineText + " " + nextLineText, currLineText.length + 1];
-}
-
-function parseHeading(lineText: string): { level: number; text: string } {
-	const match = lineText.match(/^(#+)\s*(.*)$/);
-	if (match) {
-		return { level: match[1].length, text: match[2].trim() };
-	}
-	return { level: 0, text: lineText.trim() };
-}
-
-export function joinPreviousLine(
-	previousLineText: string,
-	currentLineText: string
-): [string, number] {
-	previousLineText = previousLineText.trimEnd();
-	if (isNullOrEmpty(currentLineText)) {
-		return [previousLineText, previousLineText.length];
-	}
-
-	const [currLineLevel, currRestLine] = checkIndentLevel(previousLineText);
-	const [nextLineLevel, nextRestLine] = checkIndentLevel(currentLineText);
-
-	currentLineText = trimMarkdownListSymbol(nextRestLine);
-
-	return [
-		previousLineText + " " + currentLineText,
-		previousLineText.length + 1,
-	];
-}
-function isNullOrEmpty(str: string | null | undefined): boolean {
-	return str === null || str === undefined || str.trim().length === 0;
-}
-function checkIndentLevel(lineText: string): [number, string] {
-	const match = lineText.match(/^([\s]+)([-*+]\s+|\d+\.\s+)/);
-	if (match && match != undefined) {
-		const matching = match[1];
-		const level = matching.length;
-		return [level, lineText.trimStart()];
-	}
-	return [0, lineText];
-}
-
-function trimMarkdownListSymbol(lineText: string): string {
-	return lineText.replace(/^(\d+\.|\-)(?:\s(\d+\.|\-))*\s/, "").trim();
 }
 
 // function joinLinesCursorTextWithLists(
