@@ -17,7 +17,7 @@ export function joinNextLine(
 		nextLineText = nextLineText.trim();
 		return [nextLineText, 0];
 	}
-	nextLineText = nextLineText.trim();
+	nextLineText = nextLineText.trimEnd();
 	if (currLineText.startsWith("$$") && nextLineText.endsWith("$$")) {
 		return [
 			currLineText.replace(/^\$\$/, "$") +
