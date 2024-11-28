@@ -111,7 +111,7 @@ describe("test join behavior", () => {
 				$$
 				`);
 		});
-		fit("many not continuous math block", () => {
+		it("many not continuous math block", () => {
 			const slach = "\\";
 			expect(
 				joinLinesSelectText(dedent`
