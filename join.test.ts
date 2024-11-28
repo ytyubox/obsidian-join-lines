@@ -219,6 +219,11 @@ describe("test join behavior", () => {
 				joinNextLine(`   $$   current line`, `next line $$     `)
 			).toStrictEqual([`$current line next line$`, 14]);
 		});
+		it("block math prefix line, next empty line block math suffix", () => {
+			expect(
+				joinNextLine(`   $$   current line`, `     $$     `)
+			).toStrictEqual([`$current line$`, 14]);
+		});
 		it("block math prefix line, next block math suffix", () => {
 			expect(
 				joinNextLine(`   $$   current line`, `    next line $$     `)

@@ -23,6 +23,10 @@ export function joinNextLine(
 		nextLineText.endsWith("$$")
 	) {
 		currLineText = currLineText.trim().replace(/^\$\$\s+/, "$");
+		nextLineText = nextLineText.trim();
+		if (nextLineText === "$$") {
+			return [currLineText + "$", currLineText.length + 1];
+		}
 		return [
 			currLineText + " " + nextLineText.trim().replace(/\s+\$\$$/, "$"),
 			currLineText.length + 1,
