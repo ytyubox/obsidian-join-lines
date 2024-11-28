@@ -296,4 +296,15 @@ describe("test join behavior", () => {
 			).toStrictEqual([`${s}- previous line current line`, 18]);
 		});
 	});
+	describe("join cursor mathjax line", () => {
+		it("block math prefix line, next block math suffix", () => {
+			const s = "  ";
+			expect(
+				joinPreviousLine(
+					`${s}- previous line`,
+					`${s}${s}- current line`
+				)
+			).toStrictEqual([`${s}- previous line current line`, 18]);
+		});
+	});
 });
