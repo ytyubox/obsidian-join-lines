@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">26.25% </span>
+                <span class="strong">31.7% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>21/80</span>
+                <span class='fraction'>26/82</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">21.05% </span>
+                <span class="strong">23.68% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>8/38</span>
+                <span class='fraction'>9/38</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">26.25% </span>
+                <span class="strong">31.7% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>21/80</span>
+                <span class='fraction'>26/82</span>
             </div>
         
             
@@ -255,7 +255,10 @@
 <a name='L190'></a><a href='#L190'>190</a>
 <a name='L191'></a><a href='#L191'>191</a>
 <a name='L192'></a><a href='#L192'>192</a>
-<a name='L193'></a><a href='#L193'>193</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -346,24 +349,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -536,17 +542,19 @@ export function joinLinesSelectText(text: string): string {
 			const nextText = text.slice(nextIndex);
 			const nextContext = nextText.match(/^[^$]+/);
 &nbsp;
-			<span class="missing-if-branch" title="if path not taken" >I</span>if (nextContext &amp;&amp; nextContext[0].trim().length &gt; 0) {
+			if (nextContext &amp;&amp; nextContext[0].trim().length &gt; 0) {
 				// Add current block to combined math, start a new segment
-<span class="cstat-no" title="statement not covered" >				<span class="missing-if-branch" title="if path not taken" >I</span>if (combinedMath) {</span>
+				<span class="missing-if-branch" title="if path not taken" >I</span>if (combinedMath) {
 <span class="cstat-no" title="statement not covered" >					contextSegments.push(</span>
 						`$$\n\\begin{align}\n&amp; ${combinedMath}\n\\end{align}\n$$`
 					);
+&nbsp;
 <span class="cstat-no" title="statement not covered" >					combinedMath = "";</span>
 <span class="cstat-no" title="statement not covered" >					combinedMathLine = 0;</span>
 				}
-<span class="cstat-no" title="statement not covered" >				contextSegments.push(`$$\n&amp; ${cleanedBlock}\n$$`);</span>
-<span class="cstat-no" title="statement not covered" >				contextSegments.push(nextContext[0].trim());</span>
+				console.log(cleanedBlock);
+				contextSegments.push(`$$\n${cleanedBlock}\n$$`);
+				contextSegments.push(nextContext[0].trim());
 			} else {
 				// Continue combining math blocks
 				combinedMath += combinedMath
@@ -557,6 +565,7 @@ export function joinLinesSelectText(text: string): string {
 		});
 &nbsp;
 		if (combinedMath) {
+			console.log(combinedMath);
 			<span class="missing-if-branch" title="if path not taken" >I</span>if (combinedMathLine === 1) {
 <span class="cstat-no" title="statement not covered" >				contextSegments.push(`$$\n${combinedMath}\n$$`);</span>
 			} else {
@@ -646,7 +655,7 @@ export function <span class="fstat-no" title="function not covered" >joinPreviou
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-28T12:53:36.175Z
+                at 2024-11-28T12:59:01.352Z
             </div>
         <script src="prettify.js"></script>
         <script>

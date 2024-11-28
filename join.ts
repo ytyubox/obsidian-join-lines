@@ -93,10 +93,12 @@ export function joinLinesSelectText(text: string): string {
 					contextSegments.push(
 						`$$\n\\begin{align}\n& ${combinedMath}\n\\end{align}\n$$`
 					);
+
 					combinedMath = "";
 					combinedMathLine = 0;
 				}
-				contextSegments.push(`$$\n& ${cleanedBlock}\n$$`);
+				console.log(cleanedBlock);
+				contextSegments.push(`$$\n${cleanedBlock}\n$$`);
 				contextSegments.push(nextContext[0].trim());
 			} else {
 				// Continue combining math blocks
@@ -108,6 +110,7 @@ export function joinLinesSelectText(text: string): string {
 		});
 
 		if (combinedMath) {
+			console.log(combinedMath);
 			if (combinedMathLine === 1) {
 				contextSegments.push(`$$\n${combinedMath}\n$$`);
 			} else {
