@@ -6,25 +6,6 @@ function parseHeading(lineText: string): { level: number; text: string } {
 	return { level: 0, text: lineText.trim() };
 }
 
-export function joinPreviousLine(
-	previousLineText: string,
-	currentLineText: string
-): [string, number] {
-	previousLineText = previousLineText.trimEnd();
-	if (isNullOrEmpty(currentLineText)) {
-		return [previousLineText, previousLineText.length];
-	}
-
-	const [currLineLevel, currRestLine] = checkIndentLevel(previousLineText);
-	const [nextLineLevel, nextRestLine] = checkIndentLevel(currentLineText);
-
-	currentLineText = trimMarkdownListSymbol(nextRestLine);
-
-	return [
-		previousLineText + " " + currentLineText,
-		previousLineText.length + 1,
-	];
-}
 function isNullOrEmpty(str: string | null | undefined): boolean {
 	return str === null || str === undefined || str.trim().length === 0;
 }
@@ -98,6 +79,25 @@ export function joinNextLine(
 	return [currLineText + " " + nextLineText, currLineText.length + 1];
 }
 
+export function joinPreviousLine(
+	previousLineText: string,
+	currentLineText: string
+): [string, number] {
+	previousLineText = previousLineText.trimEnd();
+	if (isNullOrEmpty(currentLineText)) {
+		return [previousLineText, previousLineText.length];
+	}
+
+	const [currLineLevel, currRestLine] = checkIndentLevel(previousLineText);
+	const [nextLineLevel, nextRestLine] = checkIndentLevel(currentLineText);
+
+	currentLineText = trimMarkdownListSymbol(nextRestLine);
+
+	return [
+		previousLineText + " " + currentLineText,
+		previousLineText.length + 1,
+	];
+}
 // function joinLinesCursorTextWithLists(
 // 	currLineText: string,
 // 	nextLineText: string
