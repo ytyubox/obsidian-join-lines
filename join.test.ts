@@ -58,6 +58,33 @@ describe("test join behavior", () => {
 				`
 			);
 		});
+		it("many math block", () => {
+			const slach = "\\";
+			expect(
+				joinLinesSelectText(dedent`
+				$$
+				line 1
+				$$
+
+				$$			
+				line 2
+				$$
+
+
+				$$			
+				line 3
+				$$
+				`)
+			).toStrictEqual(dedent`
+				$$
+				\begin{align}
+				& line 1 ${slach}${slach}
+				& line 2 ${slach}${slach}
+				& line 3
+				\end{align}
+				$$
+				`);
+		});
 	});
 
 	describe("join cursor next line", () => {

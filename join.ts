@@ -72,15 +72,23 @@ export function joinNextLine(
 	}
 	return [currLineText + " " + nextLineText, currLineText.length + 1];
 }
-
 export function joinLinesSelectText(text: string): string {
+	// Handle multiple math blocks by combining them into a single align environment
+	const mathBlockPattern = /\$\$[\s\S]*?\$\$/g;
+	const mathBlocks = text.match(mathBlockPattern);
+	if (mathBlocks) {
+		const combinedMath = mathBlocks
+			.map((block) => "& " + block.replace(/\$\$/g, "").trim())
+			.join(" \\\\\n");
+		return `$$\n\\begin{align}\n${combinedMath}\n\\end{align}\n$$`;
+	}
+
 	const match = text.match(/\n{2,}/);
 	if (match?.length) {
-		return text.replace(/\n{2,}/gm, "\n");
+		return text.replace(/\n{2,}/gm, "\n").trim();
 	}
-	return text.replace(/\n/gm, " ");
+	return text.replace(/\n/gm, " ").trim();
 }
-
 export function joinPreviousLine(
 	previousLineText: string,
 	currentLineText: string
