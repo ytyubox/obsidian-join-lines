@@ -230,6 +230,11 @@ describe("test join behavior", () => {
 				joinNextLine(`$current line$, other`, `$next line$     `)
 			).toStrictEqual([`$current line$, other $next line$`, 22]);
 		});
+		it("inline math line, next prefix other inline math", () => {
+			expect(
+				joinNextLine(`$current line$`, `other, $next line$     `)
+			).toStrictEqual([`$current line$ other, $next line$`, 15]);
+		});
 	});
 	describe("join cursor previous line", () => {
 		it("empty previous line", () => {
