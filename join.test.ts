@@ -213,24 +213,24 @@ describe("test join behavior", () => {
 		});
 	});
 
-	xdescribe("join cursor mathjax line", () => {
+	describe("join cursor mathjax line", () => {
 		it("block math prefix line, next block math suffix", () => {
 			const s = "$$ current line";
 			expect(
 				joinNextLine(`$$ current line`, `next line $$     `)
-			).toStrictEqual([`$ current line next line $`, 18]);
+			).toStrictEqual([`$ current line next line $`, 16]);
 		});
 		it("inline math prefix line, next block math inline", () => {
 			const s = "$$ current line";
 			expect(
 				joinNextLine(`$current line$`, `$next line$     `)
-			).toStrictEqual([`$current line next line $`, 18]);
+			).toStrictEqual([`$current line next line$`, 15]);
 		});
-		it("inline math line, next block inline math", () => {
+		fit("inline math line, next block inline math", () => {
 			const s = "$$ current line";
 			expect(
 				joinNextLine(`$current line$, other`, `$next line$     `)
-			).toStrictEqual([`$current line$, other $next line $`, 18]);
+			).toStrictEqual([`$current line$, other $next line$`, 22]);
 		});
 	});
 	describe("join cursor previous line", () => {

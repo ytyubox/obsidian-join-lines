@@ -35,15 +35,22 @@ export function joinNextLine(
 		nextLineText = nextLineText.trim();
 		return [nextLineText, 0];
 	}
+	nextLineText = nextLineText.trim();
+	if (currLineText.startsWith("$$") && nextLineText.endsWith("$$")) {
+		return [
+			currLineText.replace(/^\$\$/, "$") +
+				" " +
+				nextLineText.replace(/\$\$$/, "$"),
+			currLineText.length + 1,
+		];
+	}
 
-	const [currLineLevel, currRestLine] = checkIndentLevel(currLineText);
-	const [nextLineLevel, nextRestLine] = checkIndentLevel(nextLineText);
+	if (currLineText.endsWith("$") && nextLineText.startsWith("$")) {
+		return [
+			currLineText.slice(0, -1) + " " + nextLineText.slice(1),
 
-	const headingInfo = parseHeading(nextRestLine);
-	if (headingInfo.level > 0) {
-		nextLineText = headingInfo.text;
-	} else {
-		nextLineText = trimMarkdownListSymbol(nextRestLine);
+			currLineText.length + 1,
+		];
 	}
 
 	return [currLineText + " " + nextLineText, currLineText.length + 1];
