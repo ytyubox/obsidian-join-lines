@@ -23,13 +23,6 @@ function trimMarkdownListSymbol(lineText: string): string {
 	return lineText.replace(/^(\d+\.|\-)(?:\s(\d+\.|\-))*\s/, "").trim();
 }
 
-export function joinLinesSelectText(text: string): string {
-	const match = text.match(/\n{2,}/);
-	if (match?.length) {
-		return text.replace(/\n{2,}/gm, "\n");
-	}
-	return text.replace(/\n/gm, " ");
-}
 export function joinNextLine(
 	currLineText: string,
 	nextLineText: string
@@ -77,6 +70,13 @@ export function joinNextLine(
 		nextLineText = trimMarkdownListSymbol(nextRestLine);
 	}
 	return [currLineText + " " + nextLineText, currLineText.length + 1];
+}
+export function joinLinesSelectText(text: string): string {
+	const match = text.match(/\n{2,}/);
+	if (match?.length) {
+		return text.replace(/\n{2,}/gm, "\n");
+	}
+	return text.replace(/\n/gm, " ");
 }
 
 export function joinPreviousLine(
