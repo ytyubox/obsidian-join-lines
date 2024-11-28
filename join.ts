@@ -18,11 +18,14 @@ export function joinNextLine(
 		return [nextLineText, 0];
 	}
 	nextLineText = nextLineText.trimEnd();
-	if (currLineText.startsWith("$$") && nextLineText.endsWith("$$")) {
+	if (
+		currLineText.trimStart().startsWith("$$") &&
+		nextLineText.endsWith("$$")
+	) {
 		return [
-			currLineText.replace(/^\$\$/, "$") +
+			currLineText.replace(/^\$\$\s+/, "$") +
 				" " +
-				nextLineText.replace(/\$\$$/, "$"),
+				nextLineText.replace(/\s+\$\$$/, "$"),
 			currLineText.length + 1,
 		];
 	}

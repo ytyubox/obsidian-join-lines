@@ -217,7 +217,7 @@ describe("test join behavior", () => {
 		it("block math prefix line, next block math suffix", () => {
 			expect(
 				joinNextLine(`$$ current line`, `next line $$     `)
-			).toStrictEqual([`$ current line next line $`, 16]);
+			).toStrictEqual([`$current line next line$`, 16]);
 		});
 		it("inline math prefix line, next block math inline", () => {
 			const s = "$$ current line";
