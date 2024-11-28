@@ -212,6 +212,27 @@ describe("test join behavior", () => {
 			});
 		});
 	});
+
+	xdescribe("join cursor mathjax line", () => {
+		it("block math prefix line, next block math suffix", () => {
+			const s = "$$ current line";
+			expect(
+				joinNextLine(`$$ current line`, `next line $$     `)
+			).toStrictEqual([`$ current line next line $`, 18]);
+		});
+		it("inline math prefix line, next block math inline", () => {
+			const s = "$$ current line";
+			expect(
+				joinNextLine(`$current line$`, `$next line$     `)
+			).toStrictEqual([`$current line next line $`, 18]);
+		});
+		it("inline math line, next block inline math", () => {
+			const s = "$$ current line";
+			expect(
+				joinNextLine(`$current line$, other`, `$next line$     `)
+			).toStrictEqual([`$current line$, other $next line $`, 18]);
+		});
+	});
 	describe("join cursor previous line", () => {
 		it("empty previous line", () => {
 			expect(joinPreviousLine("previous line", "")).toStrictEqual([
@@ -287,17 +308,6 @@ describe("test join behavior", () => {
 			).toStrictEqual(["- previous line current line", 16]);
 		});
 		it("indented bullet list line, next lower indented bullet list", () => {
-			const s = "  ";
-			expect(
-				joinPreviousLine(
-					`${s}- previous line`,
-					`${s}${s}- current line`
-				)
-			).toStrictEqual([`${s}- previous line current line`, 18]);
-		});
-	});
-	describe("join cursor mathjax line", () => {
-		it("block math prefix line, next block math suffix", () => {
 			const s = "  ";
 			expect(
 				joinPreviousLine(

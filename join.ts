@@ -1,10 +1,28 @@
-export function joinLinesSelectText(text: string): string {
-	const match = text.match(/\n{2,}/);
-	if (match?.length) {
-		return text.replace(/\n{2,}/gm, "\n");
+function parseHeading(lineText: string): { level: number; text: string } {
+	const match = lineText.match(/^(#+)\s*(.*)$/);
+	if (match) {
+		return { level: match[1].length, text: match[2].trim() };
 	}
-	return text.replace(/\n/gm, " ");
+	return { level: 0, text: lineText.trim() };
 }
+
+function isNullOrEmpty(str: string | null | undefined): boolean {
+	return str === null || str === undefined || str.trim().length === 0;
+}
+function checkIndentLevel(lineText: string): [number, string] {
+	const match = lineText.match(/^([\s]+)([-*+]\s+|\d+\.\s+)/);
+	if (match && match != undefined) {
+		const matching = match[1];
+		const level = matching.length;
+		return [level, lineText.trimStart()];
+	}
+	return [0, lineText];
+}
+
+function trimMarkdownListSymbol(lineText: string): string {
+	return lineText.replace(/^(\d+\.|\-)(?:\s(\d+\.|\-))*\s/, "").trim();
+}
+
 export function joinNextLine(
 	currLineText: string,
 	nextLineText: string
@@ -31,14 +49,6 @@ export function joinNextLine(
 	return [currLineText + " " + nextLineText, currLineText.length + 1];
 }
 
-function parseHeading(lineText: string): { level: number; text: string } {
-	const match = lineText.match(/^(#+)\s*(.*)$/);
-	if (match) {
-		return { level: match[1].length, text: match[2].trim() };
-	}
-	return { level: 0, text: lineText.trim() };
-}
-
 export function joinPreviousLine(
 	previousLineText: string,
 	currentLineText: string
@@ -58,24 +68,13 @@ export function joinPreviousLine(
 		previousLineText.length + 1,
 	];
 }
-
-function isNullOrEmpty(str: string | null | undefined): boolean {
-	return str === null || str === undefined || str.trim().length === 0;
-}
-function checkIndentLevel(lineText: string): [number, string] {
-	const match = lineText.match(/^([\s]+)([-*+]\s+|\d+\.\s+)/);
-	if (match && match != undefined) {
-		const matching = match[1];
-		const level = matching.length;
-		return [level, lineText.trimStart()];
+export function joinLinesSelectText(text: string): string {
+	const match = text.match(/\n{2,}/);
+	if (match?.length) {
+		return text.replace(/\n{2,}/gm, "\n");
 	}
-	return [0, lineText];
+	return text.replace(/\n/gm, " ");
 }
-
-function trimMarkdownListSymbol(lineText: string): string {
-	return lineText.replace(/^(\d+\.|\-)(?:\s(\d+\.|\-))*\s/, "").trim();
-}
-
 // function joinLinesCursorTextWithLists(
 // 	currLineText: string,
 // 	nextLineText: string
