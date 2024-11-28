@@ -58,13 +58,33 @@ describe("test join behavior", () => {
 				`
 			);
 		});
+		fit("a math block", () => {
+			const slach = "\\";
+			expect(
+				joinLinesSelectText(dedent`
+
+
+
+				$$
+				line 1
+				$$
+
+
+
+				`)
+			).toStrictEqual(dedent`
+				$$
+				line 1
+				$$
+				`);
+		});
 		it("many math block", () => {
 			const slach = "\\";
 			expect(
 				joinLinesSelectText(dedent`
 
 
-					
+
 				$$
 				line 1
 				$$
@@ -85,6 +105,45 @@ describe("test join behavior", () => {
 				$$
 				\begin{align}
 				& line 1 ${slach}${slach}
+				& line 2 ${slach}${slach}
+				& line 3
+				\end{align}
+				$$
+				`);
+		});
+		it("many not continuous math block", () => {
+			const slach = "\\";
+			expect(
+				joinLinesSelectText(dedent`
+
+
+					
+				$$
+				line 1
+				$$
+
+				context 1
+
+				$$			
+				line 2
+				$$
+
+				$$			
+				line 3
+				$$
+
+
+
+				`)
+			).toStrictEqual(dedent`
+				$$
+				line 1
+				$$
+
+				context 1
+
+				$$
+				\begin{align}
 				& line 2 ${slach}${slach}
 				& line 3
 				\end{align}

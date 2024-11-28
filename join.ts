@@ -77,10 +77,47 @@ export function joinLinesSelectText(text: string): string {
 	const mathBlockPattern = /\$\$[\s\S]*?\$\$/g;
 	const mathBlocks = text.match(mathBlockPattern);
 	if (mathBlocks) {
-		const combinedMath = mathBlocks
-			.map((block) => "& " + block.replace(/\$\$/g, "").trim())
-			.join(" \\\\\n");
-		return `$$\n\\begin{align}\n${combinedMath}\n\\end{align}\n$$`;
+		let combinedMath = "";
+		var combinedMathLine = 0;
+		let contextSegments: string[] = [];
+
+		mathBlocks.forEach((block, index) => {
+			const cleanedBlock = block.replace(/\$\$/g, "").trim();
+			const nextIndex = text.indexOf(block) + block.length;
+			const nextText = text.slice(nextIndex);
+			const nextContext = nextText.match(/^[^$]+/);
+
+			if (nextContext && nextContext[0].trim().length > 0) {
+				// Add current block to combined math, start a new segment
+				if (combinedMath) {
+					contextSegments.push(
+						`$$\n\\begin{align}\n& ${combinedMath}\n\\end{align}\n$$`
+					);
+					combinedMath = "";
+					combinedMathLine = 0;
+				}
+				contextSegments.push(`$$\n& ${cleanedBlock}\n$$`);
+				contextSegments.push(nextContext[0].trim());
+			} else {
+				// Continue combining math blocks
+				combinedMath += combinedMath
+					? ` \\\\\n& ${cleanedBlock}`
+					: cleanedBlock;
+				combinedMathLine += 1;
+			}
+		});
+
+		if (combinedMath) {
+			if (combinedMathLine === 1) {
+				contextSegments.push(`$$\n${combinedMath}\n$$`);
+			} else {
+				contextSegments.push(
+					`$$\n\\begin{align}\n& ${combinedMath}\n\\end{align}\n$$`
+				);
+			}
+		}
+
+		return contextSegments.join("\n\n").trim();
 	}
 
 	const match = text.match(/\n{2,}/);
