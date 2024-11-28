@@ -216,14 +216,14 @@ describe("test join behavior", () => {
 	describe("join cursor mathjax line", () => {
 		it("block math prefix line, next block math suffix", () => {
 			expect(
-				joinNextLine(`$$ current line`, `next line $$     `)
-			).toStrictEqual([`$current line next line$`, 16]);
+				joinNextLine(`   $$   current line`, `next line $$     `)
+			).toStrictEqual([`$current line next line$`, 14]);
 		});
 		it("inline math prefix line, next block math inline", () => {
 			const s = "$$ current line";
 			expect(
 				joinNextLine(`$current line$`, `$next line$     `)
-			).toStrictEqual([`$current line next line$`, 15]);
+			).toStrictEqual([`$current line next line$`, 14]);
 		});
 		it("inline math line suffix other, next inline math", () => {
 			expect(

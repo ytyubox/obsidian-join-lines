@@ -22,17 +22,17 @@ export function joinNextLine(
 		currLineText.trimStart().startsWith("$$") &&
 		nextLineText.endsWith("$$")
 	) {
+		currLineText = currLineText.trimStart().replace(/^\$\$\s+/, "$");
 		return [
-			currLineText.replace(/^\$\$\s+/, "$") +
-				" " +
-				nextLineText.replace(/\s+\$\$$/, "$"),
+			currLineText + " " + nextLineText.replace(/\s+\$\$$/, "$"),
 			currLineText.length + 1,
 		];
 	}
 
 	if (currLineText.endsWith("$") && nextLineText.startsWith("$")) {
+		currLineText = currLineText.slice(0, -1);
 		return [
-			currLineText.slice(0, -1) + " " + nextLineText.slice(1),
+			currLineText + " " + nextLineText.slice(1),
 
 			currLineText.length + 1,
 		];
