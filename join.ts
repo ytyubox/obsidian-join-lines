@@ -22,9 +22,9 @@ export function joinNextLine(
 		currLineText.trimStart().startsWith("$$") &&
 		nextLineText.endsWith("$$")
 	) {
-		currLineText = currLineText.trimStart().replace(/^\$\$\s+/, "$");
+		currLineText = currLineText.trim().replace(/^\$\$\s+/, "$");
 		return [
-			currLineText + " " + nextLineText.replace(/\s+\$\$$/, "$"),
+			currLineText + " " + nextLineText.trim().replace(/\s+\$\$$/, "$"),
 			currLineText.length + 1,
 		];
 	}
