@@ -225,7 +225,7 @@ describe("test join behavior", () => {
 				joinNextLine(`$current line$`, `$next line$     `)
 			).toStrictEqual([`$current line next line$`, 15]);
 		});
-		it("inline math line, next block inline math", () => {
+		it("inline math line suffix other, next inline math", () => {
 			expect(
 				joinNextLine(`$current line$, other`, `$next line$     `)
 			).toStrictEqual([`$current line$, other $next line$`, 22]);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1732776270980" clover="3.2.0">
-  <project timestamp="1732776270980" name="All files">
+<coverage generated="1732776381376" clover="3.2.0">
+  <project timestamp="1732776381376" name="All files">
     <metrics statements="44" coveredstatements="44" conditionals="23" coveredconditionals="23" methods="7" coveredmethods="7" elements="74" coveredelements="74" complexity="0" loc="44" ncloc="44" packages="1" files="1" classes="1"/>
     <file name="join.ts" path="/Users/tsungyu/Desktop/Develop-plugin/.obsidian/plugins/obsidian-join-lines/join.ts">
       <metrics statements="44" coveredstatements="44" conditionals="23" coveredconditionals="23" methods="7" coveredmethods="7"/>
