@@ -1,3 +1,10 @@
+export function joinLinesSelectText(text: string): string {
+	const match = text.match(/\n{2,}/);
+	if (match?.length) {
+		return text.replace(/\n{2,}/gm, "\n");
+	}
+	return text.replace(/\n/gm, " ");
+}
 export function joinNextLine(
 	currLineText: string,
 	nextLineText: string
@@ -83,13 +90,7 @@ export function joinPreviousLine(
 		previousLineText.length + 1,
 	];
 }
-export function joinLinesSelectText(text: string): string {
-	const match = text.match(/\n{2,}/);
-	if (match?.length) {
-		return text.replace(/\n{2,}/gm, "\n");
-	}
-	return text.replace(/\n/gm, " ");
-}
+
 // function joinLinesCursorTextWithLists(
 // 	currLineText: string,
 // 	nextLineText: string
