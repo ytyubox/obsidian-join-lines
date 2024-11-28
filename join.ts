@@ -27,10 +27,11 @@ export function joinNextLine(
 		if (nextLineText === "$$") {
 			return [currLineText + "$", currLineText.length + 1];
 		}
-		return [
-			currLineText + " " + nextLineText.trim().replace(/\s+\$\$$/, "$"),
-			currLineText.length + 1,
-		];
+		nextLineText = nextLineText.trim().replace(/\s+\$\$$/, "$");
+		if (currLineText === "$$") {
+			return ["$" + nextLineText, 1];
+		}
+		return [currLineText + " " + nextLineText, currLineText.length + 1];
 	}
 
 	if (currLineText.endsWith("$") && nextLineText.startsWith("$")) {
