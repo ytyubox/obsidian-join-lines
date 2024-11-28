@@ -234,13 +234,13 @@ describe("test join behavior", () => {
 				joinNextLine(`   $$   current line`, `    next line $$     `)
 			).toStrictEqual([`$current line next line$`, 14]);
 		});
-		xit("prefix line then block math , next block math suffix", () => {
+		it("prefix line then block math , next block math suffix", () => {
 			expect(
 				joinNextLine(
 					`content $$   current line`,
 					`    next line $$     `
 				)
-			).toStrictEqual([`content $current line next line$`, 14]);
+			).toStrictEqual([`content $current line next line$`, 22]);
 		});
 		it("inline math prefix line, next block math inline", () => {
 			const s = "$$ current line";

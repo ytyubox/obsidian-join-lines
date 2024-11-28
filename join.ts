@@ -36,12 +36,14 @@ export function joinNextLine(
 		return [nextLineText, 0];
 	}
 	nextLineText = nextLineText.trimEnd();
-	if (
-		currLineText.trimStart().startsWith("$$") &&
-		nextLineText.endsWith("$$")
-	) {
-		currLineText = currLineText.trim().replace(/^\$\$\s+/, "$");
-		nextLineText = nextLineText.trim();
+	if (currLineText.includes("$$") && nextLineText.endsWith("$$")) {
+		if (currLineText.trimStart().startsWith("$$")) {
+			currLineText = currLineText.trim().replace(/^\$\$\s+/, "$");
+			nextLineText = nextLineText.trim();
+		} else {
+			currLineText = currLineText.replace(/\$\$\s+/, "$");
+			nextLineText = nextLineText.trim();
+		}
 		if (nextLineText === "$$") {
 			return [currLineText + "$", currLineText.length + 1];
 		}
@@ -56,7 +58,6 @@ export function joinNextLine(
 		currLineText = currLineText.slice(0, -1);
 		return [
 			currLineText + " " + nextLineText.slice(1),
-
 			currLineText.length + 1,
 		];
 	}
@@ -71,6 +72,7 @@ export function joinNextLine(
 	}
 	return [currLineText + " " + nextLineText, currLineText.length + 1];
 }
+
 export function joinLinesSelectText(text: string): string {
 	const match = text.match(/\n{2,}/);
 	if (match?.length) {
