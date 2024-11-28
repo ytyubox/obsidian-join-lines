@@ -215,7 +215,6 @@ describe("test join behavior", () => {
 
 	describe("join cursor mathjax line", () => {
 		it("block math prefix line, next block math suffix", () => {
-			const s = "$$ current line";
 			expect(
 				joinNextLine(`$$ current line`, `next line $$     `)
 			).toStrictEqual([`$ current line next line $`, 16]);
@@ -226,8 +225,7 @@ describe("test join behavior", () => {
 				joinNextLine(`$current line$`, `$next line$     `)
 			).toStrictEqual([`$current line next line$`, 15]);
 		});
-		fit("inline math line, next block inline math", () => {
-			const s = "$$ current line";
+		it("inline math line, next block inline math", () => {
 			expect(
 				joinNextLine(`$current line$, other`, `$next line$     `)
 			).toStrictEqual([`$current line$, other $next line$`, 22]);
