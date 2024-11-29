@@ -150,6 +150,39 @@ describe("test join behavior", () => {
 				$$
 				`);
 		});
+		fit("many math block, but miss select last pair", () => {
+			const slach = "\\";
+			const result = joinLinesSelectText(dedent`
+
+				previous line
+
+				$$
+				line 1
+				$$
+
+				$$			
+				line 2
+				$$
+
+
+				$$			
+				line 3
+				`);
+			console.log(result);
+			expect(result).toStrictEqual(dedent`
+				previous line
+
+				$$
+				\begin{align}
+				& line 1 ${slach}${slach}
+				& line 2
+				\end{align}
+				$$
+				
+				$$
+				line 3
+				`);
+		});
 	});
 
 	describe("join cursor next line", () => {

@@ -72,62 +72,46 @@ export function joinNextLine(
 	}
 	return [currLineText + " " + nextLineText, currLineText.length + 1];
 }
-export function joinLinesSelectText(text: string): string {
-	// Handle multiple math blocks by combining them into a single align environment
-	const mathBlockPattern = /\$\$[\s\S]*?\$\$/g;
-	const mathBlocks = text.match(mathBlockPattern);
-	if (mathBlocks) {
-		let combinedMath = "";
-		var combinedMathLine = 0;
-		let contextSegments: string[] = [];
+export function joinLinesSelectText(input: string): string {
+	const lines = input.split("\n");
+	let inMathBlock = false;
+	let result: string[] = [];
+	let alignBlock: string[] = [];
 
-		mathBlocks.forEach((block, index) => {
-			const cleanedBlock = block.replace(/\$\$/g, "").trim();
-			const nextIndex = text.indexOf(block) + block.length;
-			const nextText = text.slice(nextIndex);
-			const nextContext = nextText.match(/^[^$]+/);
-
-			if (nextContext && nextContext[0].trim().length > 0) {
-				// Add current block to combined math, start a new segment
-				if (combinedMath) {
-					contextSegments.push(
-						`$$\n\\begin{align}\n& ${combinedMath}\n\\end{align}\n$$`
+	for (let line of lines) {
+		if (line.trim() === "$$") {
+			if (inMathBlock) {
+				// Closing the math block
+				if (alignBlock.length > 1) {
+					result.push("$$\n\\begin{align}");
+					result.push(
+						...alignBlock.map(
+							(l, i) =>
+								`& ${l.trim()}${
+									i < alignBlock.length - 1 ? " \\\\" : ""
+								}`
+						)
 					);
-
-					combinedMath = "";
-					combinedMathLine = 0;
+					result.push("\\end{align}\n$$");
+					alignBlock = [];
 				}
-				console.log(cleanedBlock);
-				contextSegments.push(`$$\n${cleanedBlock}\n$$`);
-				contextSegments.push(nextContext[0].trim());
-			} else {
-				// Continue combining math blocks
-				combinedMath += combinedMath
-					? ` \\\\\n& ${cleanedBlock}`
-					: cleanedBlock;
-				combinedMathLine += 1;
 			}
-		});
-
-		if (combinedMath) {
-			console.log(combinedMath);
-			if (combinedMathLine === 1) {
-				contextSegments.push(`$$\n${combinedMath}\n$$`);
-			} else {
-				contextSegments.push(
-					`$$\n\\begin{align}\n& ${combinedMath}\n\\end{align}\n$$`
-				);
-			}
+			inMathBlock = !inMathBlock;
+		} else if (inMathBlock) {
+			alignBlock.push(line.trim());
+		} else if (line) {
+			result.push(line + "\n");
+			console.log(result, line);
 		}
-
-		return contextSegments.join("\n\n").trim();
 	}
 
-	const match = text.match(/\n{2,}/);
-	if (match?.length) {
-		return text.replace(/\n{2,}/gm, "\n").trim();
+	// Handle case where the last math block was not properly closed
+	if (inMathBlock && alignBlock.length > 0) {
+		result.push("\n$$");
+		result.push(...alignBlock.map((l, i) => `${l.trim()}`));
 	}
-	return text.replace(/\n/gm, " ").trim();
+
+	return result.join("\n");
 }
 export function joinPreviousLine(
 	previousLineText: string,
