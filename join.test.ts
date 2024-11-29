@@ -3,42 +3,42 @@ import { joinLinesSelectText, joinNextLine, joinPreviousLine } from "./join";
 import dedent from "dedent";
 describe("test join behavior", () => {
 	describe("join selected lines", () => {
-		it("empty select", () => {
-			expect(joinLinesSelectText("")).toStrictEqual("");
-		});
+		fdescribe("plain text lines", () => {
+			it("empty select", () => {
+				expect(joinLinesSelectText("")).toStrictEqual("");
+			});
 
-		it("1 line selection", () => {
-			expect(joinLinesSelectText("line 1")).toStrictEqual("line 1");
-		});
-
-		it("2 lines selection", () => {
-			expect(
-				joinLinesSelectText(dedent`
+			it("1 line selection", () => {
+				expect(joinLinesSelectText("line 1")).toStrictEqual("line 1");
+			});
+			it("2 lines selection", () => {
+				expect(
+					joinLinesSelectText(dedent`
 				line 1
 				line 2
 				`)
-			).toStrictEqual("line 1 line 2");
-		});
+				).toStrictEqual("line 1 line 2");
+			});
 
-		it("too many linebreak with 2 lines selection", () => {
-			expect(
-				joinLinesSelectText(dedent`
+			it("too many linebreak with 2 lines selection", () => {
+				expect(
+					joinLinesSelectText(dedent`
 				line 1
 
 
 
 				line 2
 				`)
-			).toStrictEqual(
-				dedent`
+				).toStrictEqual(
+					dedent`
 				line 1
 				line 2
 				`
-			);
-		});
-		it("too many linebreak with 3 lines selection", () => {
-			expect(
-				joinLinesSelectText(dedent`
+				);
+			});
+			it("too many linebreak with 3 lines selection", () => {
+				expect(
+					joinLinesSelectText(dedent`
 				line 1
 
 
@@ -50,13 +50,14 @@ describe("test join behavior", () => {
 				
 				line 3
 				`)
-			).toStrictEqual(
-				dedent`
+				).toStrictEqual(
+					dedent`
 				line 1
 				line 2
 				line 3
 				`
-			);
+				);
+			});
 		});
 		it("a math block", () => {
 			const slach = "\\";
@@ -150,7 +151,7 @@ describe("test join behavior", () => {
 				$$
 				`);
 		});
-		fit("many math block, but miss select last pair", () => {
+		it("many math block, but miss select last pair", () => {
 			const slach = "\\";
 			const result = joinLinesSelectText(dedent`
 
@@ -169,7 +170,8 @@ describe("test join behavior", () => {
 				line 3
 				`);
 			console.log(result);
-			expect(result).toStrictEqual(dedent`
+			expect(result).toStrictEqual(
+				dedent`
 				previous line
 
 				$$
@@ -178,10 +180,11 @@ describe("test join behavior", () => {
 				& line 2
 				\end{align}
 				$$
-				
+
 				$$
 				line 3
-				`);
+				`
+			);
 		});
 	});
 

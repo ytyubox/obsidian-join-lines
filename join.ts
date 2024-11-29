@@ -75,11 +75,14 @@ export function joinNextLine(
 export function joinLinesSelectText(input: string): string {
 	const lines = input.split("\n");
 	let inMathBlock = false;
+	let istextBlock = false;
 	let result: string[] = [];
 	let alignBlock: string[] = [];
+	let blocks: number[] = [];
 
 	for (let line of lines) {
-		if (line.trim() === "$$") {
+		line = line.trim();
+		if (line === "$$") {
 			if (inMathBlock) {
 				// Closing the math block
 				if (alignBlock.length > 1) {
@@ -100,8 +103,17 @@ export function joinLinesSelectText(input: string): string {
 		} else if (inMathBlock) {
 			alignBlock.push(line.trim());
 		} else if (line) {
-			result.push(line + "\n");
+			if (istextBlock) {
+				let last = result.pop() ?? "";
+				last += " " + line;
+				result.push(last);
+			} else {
+				result.push(line);
+			}
+			istextBlock = true;
 			console.log(result, line);
+		} else {
+			istextBlock = false;
 		}
 	}
 
