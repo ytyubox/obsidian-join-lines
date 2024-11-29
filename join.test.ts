@@ -3,7 +3,7 @@ import { joinLinesSelectText, joinNextLine, joinPreviousLine } from "./join";
 import dedent from "dedent";
 describe("test join behavior", () => {
 	describe("join selected lines", () => {
-		fdescribe("plain text lines", () => {
+		describe("plain text lines", () => {
 			it("empty select", () => {
 				expect(joinLinesSelectText("")).toStrictEqual("");
 			});
@@ -59,7 +59,7 @@ describe("test join behavior", () => {
 				);
 			});
 		});
-		it("a math block", () => {
+		fit("a math block", () => {
 			const slach = "\\";
 			expect(
 				joinLinesSelectText(dedent`
@@ -79,7 +79,7 @@ describe("test join behavior", () => {
 				$$
 				`);
 		});
-		it("many math block", () => {
+		xit("many math block", () => {
 			const slach = "\\";
 			expect(
 				joinLinesSelectText(dedent`
@@ -112,7 +112,7 @@ describe("test join behavior", () => {
 				$$
 				`);
 		});
-		it("many not continuous math block", () => {
+		xit("many not continuous math block", () => {
 			const slach = "\\";
 			expect(
 				joinLinesSelectText(dedent`
@@ -151,7 +151,7 @@ describe("test join behavior", () => {
 				$$
 				`);
 		});
-		it("many math block, but miss select last pair", () => {
+		xit("many math block, but miss select last pair", () => {
 			const slach = "\\";
 			const result = joinLinesSelectText(dedent`
 

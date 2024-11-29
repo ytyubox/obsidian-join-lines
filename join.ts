@@ -82,6 +82,7 @@ export function joinLinesSelectText(input: string): string {
 
 	for (let line of lines) {
 		line = line.trim();
+		console.log(alignBlock);
 		if (line === "$$") {
 			if (inMathBlock) {
 				// Closing the math block
@@ -97,6 +98,8 @@ export function joinLinesSelectText(input: string): string {
 					);
 					result.push("\\end{align}\n$$");
 					alignBlock = [];
+				} else {
+					result.push(`$$\n${alignBlock[0]}\n$$`);
 				}
 			}
 			inMathBlock = !inMathBlock;
