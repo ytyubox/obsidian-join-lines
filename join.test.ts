@@ -59,7 +59,7 @@ describe("test join behavior", () => {
 				);
 			});
 		});
-		fit("a math block", () => {
+		it("a math block", () => {
 			const slach = "\\";
 			expect(
 				joinLinesSelectText(dedent`
