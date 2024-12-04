@@ -1,5 +1,10 @@
 import { devNull } from "os";
-import { joinLinesSelectText, joinNextLine, joinPreviousLine } from "./join";
+import {
+	joinLinesSelectText,
+	joinNextLine,
+	joinPreviousLine,
+	joinLinesSelectText_mathblock,
+} from "./join";
 import dedent from "dedent";
 describe("test join behavior", () => {
 	describe("join selected lines", () => {
@@ -62,7 +67,7 @@ describe("test join behavior", () => {
 		it("a math block", () => {
 			const slach = "\\";
 			expect(
-				joinLinesSelectText(dedent`
+				joinLinesSelectText_mathblock(dedent`
 
 
 
@@ -79,39 +84,34 @@ describe("test join behavior", () => {
 				$$
 				`);
 		});
-		xit("many math block", () => {
-			const slach = "\\";
-			expect(
-				joinLinesSelectText(dedent`
+		// it("many math block", () => {
+		// 	const slach = "\\";
+		// 	expect(
+		// 		joinLinesSelectText_mathblock(dedent`
 
+		// 		$$
+		// 		line 1
+		// 		$$
 
+		// 		$$
+		// 		line 2
+		// 		$$
 
-				$$
-				line 1
-				$$
+		// 		$$
+		// 		line 3
+		// 		$$
 
-				$$			
-				line 2
-				$$
-
-
-				$$			
-				line 3
-				$$
-
-
-
-				`)
-			).toStrictEqual(dedent`
-				$$
-				\begin{align}
-				& line 1 ${slach}${slach}
-				& line 2 ${slach}${slach}
-				& line 3
-				\end{align}
-				$$
-				`);
-		});
+		// 		`)
+		// 	).toStrictEqual(dedent`
+		// 		$$
+		// 		\begin{align}
+		// 		& line 1 ${slach}${slach}
+		// 		& line 2 ${slach}${slach}
+		// 		& line 3
+		// 		\end{align}
+		// 		$$
+		// 		`);
+		// });
 		xit("many not continuous math block", () => {
 			const slach = "\\";
 			expect(
@@ -151,41 +151,39 @@ describe("test join behavior", () => {
 				$$
 				`);
 		});
-		xit("many math block, but miss select last pair", () => {
-			const slach = "\\";
-			const result = joinLinesSelectText(dedent`
+		// it("many math block, but miss select last pair", () => {
+		// 	const slach = "\\";
+		// 	const result = joinLinesSelectText_mathblock(dedent`
 
-				previous line
+		// 		previous line
 
-				$$
-				line 1
-				$$
+		// 		$$
+		// 		line 1
+		// 		$$
 
-				$$			
-				line 2
-				$$
+		// 		$$
+		// 		line 2
+		// 		$$
 
+		// 		$$
+		// 		line 3
+		// 		`);
+		// 	expect(result).toStrictEqual(
+		// 		dedent`
+		// 		previous line
 
-				$$			
-				line 3
-				`);
-			console.log(result);
-			expect(result).toStrictEqual(
-				dedent`
-				previous line
+		// 		$$
+		// 		\begin{align}
+		// 		& line 1 ${slach}${slach}
+		// 		& line 2
+		// 		\end{align}
+		// 		$$
 
-				$$
-				\begin{align}
-				& line 1 ${slach}${slach}
-				& line 2
-				\end{align}
-				$$
-
-				$$
-				line 3
-				`
-			);
-		});
+		// 		$$
+		// 		line 3
+		// 		`
+		// 	);
+		// });
 	});
 
 	describe("join cursor next line", () => {

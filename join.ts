@@ -72,7 +72,14 @@ export function joinNextLine(
 	}
 	return [currLineText + " " + nextLineText, currLineText.length + 1];
 }
-export function joinLinesSelectText(input: string): string {
+export function joinLinesSelectText(text: string): string {
+	const match = text.match(/\n{2,}/);
+	if (match?.length) {
+		return text.replace(/\n{2,}/gm, "\n");
+	}
+	return text.replace(/\n/gm, " ");
+}
+export function joinLinesSelectText_mathblock(input: string): string {
 	const lines = input.split("\n");
 	let inMathBlock = false;
 	let istextBlock = false;
@@ -82,11 +89,20 @@ export function joinLinesSelectText(input: string): string {
 
 	for (let line of lines) {
 		line = line.trim();
-		console.log(alignBlock);
+		console.log("line", line);
+		console.log("result", result);
+		console.log("alignBlock", alignBlock);
 		if (line === "$$") {
-			if (inMathBlock) {
+			if (inMathBlock && !istextBlock) {
 				// Closing the math block
 				if (alignBlock.length > 1) {
+					let last = result.pop() ?? "";
+					if (last.startsWith("$$") && last.endsWith("$$")) {
+						last.replace(/\$\$/gm, "").trim();
+						alignBlock.push(last);
+					} else {
+						result.push(last);
+					}
 					result.push("$$\n\\begin{align}");
 					result.push(
 						...alignBlock.map(
@@ -100,6 +116,7 @@ export function joinLinesSelectText(input: string): string {
 					alignBlock = [];
 				} else {
 					result.push(`$$\n${alignBlock[0]}\n$$`);
+					alignBlock = [];
 				}
 			}
 			inMathBlock = !inMathBlock;
@@ -114,7 +131,6 @@ export function joinLinesSelectText(input: string): string {
 				result.push(line);
 			}
 			istextBlock = true;
-			console.log(result, line);
 		} else {
 			istextBlock = false;
 		}
