@@ -45,20 +45,20 @@ export function joinNextLine(
 			nextLineText = nextLineText.trim();
 		}
 		if (nextLineText === "$$") {
-			return [currLineText + "$", currLineText.length + 1];
+			return [currLineText + "$", currLineText.length];
 		}
 		nextLineText = nextLineText.trim().replace(/\s+\$\$$/, "$");
 		if (currLineText === "$$") {
 			return ["$" + nextLineText, 1];
 		}
-		return [currLineText + " " + nextLineText, currLineText.length + 1];
+		return [currLineText + " " + nextLineText, currLineText.length];
 	}
 
 	if (currLineText.endsWith("$") && nextLineText.startsWith("$")) {
 		currLineText = currLineText.slice(0, -1);
 		return [
 			currLineText + " " + nextLineText.slice(1),
-			currLineText.length + 1,
+			currLineText.length,
 		];
 	}
 
@@ -70,7 +70,7 @@ export function joinNextLine(
 	} else {
 		nextLineText = trimMarkdownListSymbol(nextRestLine);
 	}
-	return [currLineText + " " + nextLineText, currLineText.length + 1];
+	return [currLineText + " " + nextLineText, currLineText.length];
 }
 export function joinLinesSelectText(text: string): string {
 	const match = text.match(/\n{2,}/);
@@ -177,14 +177,14 @@ export function joinPreviousLine(
 // 		// Remove numbering (e.g., "2. ") from the next line
 // 		nextLineText = trimMarkdownListSymbol(nextRestLine);
 
-// 		return [currLineText + " " + nextLineText, currLineText.length + 1];
+// 		return [currLineText + " " + nextLineText, currLineText.length ];
 // 	}
 
 // 	const currLineorder = currLineText.match(/^\s*(\d+)\.\s*/g);
 // 	const nextLineorder = nextLineText.match(/^\s*(\d+)\.\s*/);
 
 // 	if (currLineorder && nextLineorder) {
-// 		const nextNumber = parseInt(currLineorder[0]) + 1;
+// 		const nextNumber = parseInt(currLineorder[0]) ;
 // 		nextLineText = nextLineText
 // 			.replace(/^\s*\d+\.\s*/, `${nextNumber}. `)
 // 			.trim();

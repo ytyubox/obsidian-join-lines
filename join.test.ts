@@ -209,13 +209,13 @@ describe("test join behavior", () => {
 			it("line with space suffix, next line", () => {
 				expect(
 					joinNextLine("current line         ", "next line")
-				).toStrictEqual(["current line next line", 13]);
+				).toStrictEqual(["current line next line", 12]);
 			});
 
 			it("line with prefix and a suffix, next line", () => {
 				expect(
 					joinNextLine("   current line         ", "next line")
-				).toStrictEqual(["   current line next line", 16]);
+				).toStrictEqual(["   current line next line", 15]);
 			});
 
 			it("line with prefix and a suffix, next line with prefix and a suffix", () => {
@@ -224,7 +224,7 @@ describe("test join behavior", () => {
 						"   current line         ",
 						"    next line    "
 					)
-				).toStrictEqual(["   current line next line", 16]);
+				).toStrictEqual(["   current line next line", 15]);
 			});
 		});
 		describe("line and heading", () => {
@@ -239,19 +239,19 @@ describe("test join behavior", () => {
 			])("line, next line h1~h6", (a, b) => {
 				expect(joinNextLine(a, b)).toStrictEqual([
 					"1. current line next line",
-					16,
+					15,
 				]);
 			});
 
 			it("line, next line heading, space suffix", () => {
 				expect(
 					joinNextLine("1. current line", "# next line   ")
-				).toStrictEqual(["1. current line next line", 16]);
+				).toStrictEqual(["1. current line next line", 15]);
 			});
 			it("line, next line heading ", () => {
 				expect(
 					joinNextLine("1. current line", "  # next line")
-				).toStrictEqual(["1. current line # next line", 16]);
+				).toStrictEqual(["1. current line # next line", 15]);
 			});
 			it("empty line, next line heading ", () => {
 				expect(joinNextLine("", "  # next line")).toStrictEqual([
@@ -283,24 +283,24 @@ describe("test join behavior", () => {
 			it("order list line, next order list line", () => {
 				expect(
 					joinNextLine("1. current line", "2. next line")
-				).toStrictEqual(["1. current line next line", 16]);
+				).toStrictEqual(["1. current line next line", 15]);
 			});
 
 			it("order list line, next order list line", () => {
 				expect(
 					joinNextLine("1. current line", "  1. next line")
-				).toStrictEqual(["1. current line next line", 16]);
+				).toStrictEqual(["1. current line next line", 15]);
 			});
 			it("indented order list line, next order list line", () => {
 				const s = "  ";
 				expect(
 					joinNextLine("  1. current line", "     1. next line")
-				).toStrictEqual([`${s}1. current line next line`, 18]);
+				).toStrictEqual([`${s}1. current line next line`, 17]);
 			});
 			it("list line, next order duplicated list line", () => {
 				expect(
 					joinNextLine("1. current line", "2. 2. next line")
-				).toStrictEqual(["1. current line next line", 16]);
+				).toStrictEqual(["1. current line next line", 15]);
 			});
 			it("bullet list line, next bullet list line", () => {
 				expect(
@@ -309,7 +309,7 @@ describe("test join behavior", () => {
 					dedent`
 			- current line next line
 			`,
-					15,
+					14,
 				]);
 			});
 
@@ -328,13 +328,13 @@ describe("test join behavior", () => {
 			it("bullet list line, next indent bullet list line", () => {
 				expect(
 					joinNextLine("- current line", "  - next line")
-				).toStrictEqual(["- current line next line", 15]);
+				).toStrictEqual(["- current line next line", 14]);
 			});
 			it("indented bullet list line, next lower indented bullet list", () => {
 				const s = "  ";
 				expect(
 					joinNextLine(`${s}- current line`, `${s}${s}- next line`)
-				).toStrictEqual([`${s}- current line next line`, 17]);
+				).toStrictEqual([`${s}- current line next line`, 16]);
 			});
 		});
 	});
@@ -343,7 +343,7 @@ describe("test join behavior", () => {
 		it("block math prefix line, next block math suffix", () => {
 			expect(
 				joinNextLine(`   $$   current line`, `next line $$     `)
-			).toStrictEqual([`$current line next line$`, 14]);
+			).toStrictEqual([`$current line next line$`, 13]);
 		});
 		it("block math prefix empty line, next block math suffix", () => {
 			expect(joinNextLine(`   $$   `, `next line $$     `)).toStrictEqual(
@@ -353,12 +353,12 @@ describe("test join behavior", () => {
 		it("block math prefix line, next empty line block math suffix", () => {
 			expect(
 				joinNextLine(`   $$   current line`, `     $$     `)
-			).toStrictEqual([`$current line$`, 14]);
+			).toStrictEqual([`$current line$`, 13]);
 		});
 		it("block math prefix line, next block math suffix", () => {
 			expect(
 				joinNextLine(`   $$   current line`, `    next line $$     `)
-			).toStrictEqual([`$current line next line$`, 14]);
+			).toStrictEqual([`$current line next line$`, 13]);
 		});
 		it("prefix line then block math , next block math suffix", () => {
 			expect(
@@ -366,23 +366,23 @@ describe("test join behavior", () => {
 					`content $$   current line`,
 					`    next line $$     `
 				)
-			).toStrictEqual([`content $current line next line$`, 22]);
+			).toStrictEqual([`content $current line next line$`, 21]);
 		});
 		it("inline math prefix line, next block math inline", () => {
 			const s = "$$ current line";
 			expect(
 				joinNextLine(`$current line$`, `$next line$     `)
-			).toStrictEqual([`$current line next line$`, 14]);
+			).toStrictEqual([`$current line next line$`, 13]);
 		});
 		it("inline math line suffix other, next inline math", () => {
 			expect(
 				joinNextLine(`$current line$, other`, `$next line$     `)
-			).toStrictEqual([`$current line$, other $next line$`, 22]);
+			).toStrictEqual([`$current line$, other $next line$`, 21]);
 		});
 		it("inline math line, next prefix other inline math", () => {
 			expect(
 				joinNextLine(`$current line$`, `other, $next line$     `)
-			).toStrictEqual([`$current line$ other, $next line$`, 15]);
+			).toStrictEqual([`$current line$ other, $next line$`, 14]);
 		});
 		it("inline math line suffix other, next prefix other inline math", () => {
 			expect(
@@ -390,7 +390,7 @@ describe("test join behavior", () => {
 					`$current line$, other1`,
 					`other2, $next line$     `
 				)
-			).toStrictEqual([`$current line$, other1 other2, $next line$`, 23]);
+			).toStrictEqual([`$current line$, other1 other2, $next line$`, 22]);
 		});
 	});
 	describe("join cursor previous line", () => {
