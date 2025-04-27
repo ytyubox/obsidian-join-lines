@@ -70,6 +70,10 @@ export function joinNextLine(
 	} else {
 		nextLineText = trimMarkdownListSymbol(nextRestLine);
 	}
+	console.log(isChinese(currLineText.slice(-1)), isChinese(nextLineText.slice(0, 1)));
+	if (isChinese(currLineText.slice(-1)) && isChinese(nextLineText.slice(0, 1))) {
+		return [currLineText + nextLineText, currLineText.length];
+	}
 	return [currLineText + " " + nextLineText, currLineText.length];
 }
 export function joinLinesSelectText(text: string): string {
@@ -208,3 +212,7 @@ export function joinPreviousLine(
 // 	}
 // 	return ["__FAILURE_CASE__", -9999999999999];
 // }
+
+function isChinese(str: string): boolean {
+	return /[\u4e00-\u9fa5]/.test(str);
+}

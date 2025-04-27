@@ -217,7 +217,21 @@ describe("test join behavior", () => {
 					joinNextLine("   current line         ", "next line")
 				).toStrictEqual(["   current line next line", 15]);
 			});
-
+			it("2 lines selection 1st en, 2nd start with chinese", () => {
+				expect(
+					joinNextLine("line 1", "行 2")
+				).toStrictEqual(["line 1 行 2", 6]);
+			});
+			it("2 zh lines", () => {
+				expect(
+					joinNextLine("行一", "行二")
+				).toStrictEqual(["行一行二", 2]);
+			});
+			it("2 zh lines, 1st start with chinese, 2nd start with english", () => {
+				expect(
+					joinNextLine("行 1", "line 2")
+				).toStrictEqual(["行 1 line 2", 3]);
+			});
 			it("line with prefix and a suffix, next line with prefix and a suffix", () => {
 				expect(
 					joinNextLine(
